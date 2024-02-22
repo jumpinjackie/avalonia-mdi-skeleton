@@ -3,7 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Maestro.Views.SidebarView">
+			 xmlns:vm="clr-namespace:Maestro.ViewModels"
+			 xmlns:views="clr-namespace:Maestro.Views"
+             x:Class="Maestro.Views.SidebarView"
+			 x:DataType="vm:SidebarViewModel">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:SidebarViewModel />
+	</Design.DataContext>
 	<TabControl TabStripPlacement="Left">
 		<TabControl.Items>
 			<TabItem ToolTip.Tip="Site Explorer">
@@ -11,7 +19,15 @@
 					<PathIcon Data="{StaticResource globe_regular}" />
 				</TabItem.Header>
 				<TabItem.Content>
-					Site Explorer Content
+					<ItemsControl ItemsSource="{Binding ConnectedSites}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<views:SiteView DataContext="{Binding}" />
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
 				</TabItem.Content>
 			</TabItem>
 			<TabItem ToolTip.Tip="Addon 1">
@@ -31,6 +47,5 @@
 				</TabItem.Content>
 			</TabItem>
 		</TabControl.Items>
-
 	</TabControl>
 </UserControl>
