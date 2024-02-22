@@ -13,23 +13,66 @@
     <vm:MainViewModel />
   </Design.DataContext>
 	<DockPanel LastChildFill="True">
+		<!-- App menu -->
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
-				<MenuItem Header="_Open..."/>
+				<MenuItem Header="_Connect"/>
+				<MenuItem Header="_New Resource"/>
+				<MenuItem Header="_Open Resource"/>
+				<Separator/>
+				<MenuItem Header="Save Resource" />
+				<MenuItem Header="Save Resource As" />
+				<MenuItem Header="Save All" />
 				<Separator/>
 				<MenuItem Header="_Exit"/>
 			</MenuItem>
 			<MenuItem Header="_Edit">
+				<MenuItem Header="Copy Resource ID to clipboard"/>
+				<Separator />
 				<MenuItem Header="Copy"/>
+				<MenuItem Header="Cut"/>
 				<MenuItem Header="Paste"/>
 			</MenuItem>
+			<MenuItem Header="_Tools">
+				<MenuItem Header="Site Administrator"/>
+				<MenuItem Header="Feature Source Preview"/>
+				<MenuItem Header="Server Status Monitor"/>
+				<MenuItem Header="_Package">
+					<MenuItem Header="Create Package" />
+					<MenuItem Header="Load Package" />
+					<MenuItem Header="Package Editor" />
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Options"/>
+			</MenuItem>
+			<MenuItem Header="_Help">
+				<MenuItem Header="User Guide"/>
+				<MenuItem Header="Tip of the Day"/>
+				<Separator />
+				<MenuItem Header="About MapGuide Maestro" />
+			</MenuItem>
 		</Menu>
-		<Grid ColumnDefinitions="300, 4, *">
-			<Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
-				<views:SidebarView />
-			</Border>
+		<!-- Status bar -->
+		<Border Padding="4, 4, 4, 4" DockPanel.Dock="Bottom">
+			<Grid ColumnDefinitions="Auto,*,Auto">
+				<!-- Connection status -->
+				<Border Grid.Column="0">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Not connected" />
+					</StackPanel>
+				</Border>
+				<Border Grid.Column="2">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Some other text" />
+					</StackPanel>
+				</Border>
+			</Grid>
+		</Border>
+		<!-- Main body -->
+		<Grid ColumnDefinitions="350, 4, *">
+			<views:SidebarView Grid.Column="0" />
 			<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
-			<Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+			<Border Grid.Column="2" Background="LightGray">
 				<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Border>
 		</Grid>

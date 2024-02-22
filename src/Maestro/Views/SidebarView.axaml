@@ -4,5 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Maestro.Views.SidebarView">
-  Sidebar
+	<TabControl TabStripPlacement="Left">
+		<TabControl.Items>
+			<TabItem ToolTip.Tip="Site Explorer">
+				<TabItem.Header>
+					<PathIcon Data="{StaticResource globe_regular}" />
+				</TabItem.Header>
+				<TabItem.Content>
+					Site Explorer Content
+				</TabItem.Content>
+			</TabItem>
+			<TabItem ToolTip.Tip="Addon 1">
+				<TabItem.Header>
+					<PathIcon Data="{StaticResource book_regular}" />
+				</TabItem.Header>
+				<TabItem.Content>
+					Addon 1 Content
+				</TabItem.Content>
+			</TabItem>
+			<TabItem ToolTip.Tip="Addon 2">
+				<TabItem.Header>
+					<PathIcon Data="{StaticResource book_regular}" />
+				</TabItem.Header>
+				<TabItem.Content>
+					Addon 2 Content
+				</TabItem.Content>
+			</TabItem>
+		</TabControl.Items>
+
+	</TabControl>
 </UserControl>
