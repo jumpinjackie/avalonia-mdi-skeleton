@@ -1,10 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maestro.ViewModels;
 
@@ -34,6 +30,13 @@ public partial class ResourceItemViewModel : AbstractResourceItemViewModel
     }
 
     public override ResourceKind Kind => ResourceKind.Resource;
+
+    [RelayCommand]
+    private void Open()
+    {
+        //TODO: Figure out best way to tell the top-level VM that I want
+        //to open this resource
+    }
 }
 
 public partial class FolderItemViewModel : AbstractResourceItemViewModel

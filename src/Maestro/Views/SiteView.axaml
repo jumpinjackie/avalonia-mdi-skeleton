@@ -21,7 +21,7 @@
 					</Grid>
 				</DataTemplate>
 				<DataTemplate DataType="{x:Type vm:ResourceItemViewModel}">
-					<Grid ColumnDefinitions="32, Auto, 4, *">
+					<Grid DoubleTapped="OnTreeNodeDoubleTap" ColumnDefinitions="32, Auto, 4, *">
 						<PathIcon Grid.Column="1" Data="{StaticResource document_regular}" />
 						<TextBlock Grid.Column="3" Text="{Binding Name}"/>
 					</Grid>
