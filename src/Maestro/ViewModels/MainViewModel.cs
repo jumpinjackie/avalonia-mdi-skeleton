@@ -25,8 +25,8 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task ConnectToSite()
+    private Task ConnectToSite()
     {
-        await this.Sidebar.ConnectToSiteAsync();
+        return this.Sidebar.ConnectToSiteAsync();
     }
 }

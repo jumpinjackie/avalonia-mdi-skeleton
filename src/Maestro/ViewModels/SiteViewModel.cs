@@ -26,7 +26,7 @@ public partial class SiteViewModel : ViewModelBase
             this.IsLoading = true;
 
             // Simulating an enumerate resources
-            await Task.Delay(3000);
+            //await Task.Delay(3000);
             var r = new Random();
             var numFolders = r.Next(3, 8);
             var numResources = r.Next(2, 4);
