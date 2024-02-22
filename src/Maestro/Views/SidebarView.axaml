@@ -24,7 +24,7 @@
 			</TabItem>
 			<TabItem ToolTip.Tip="Addon 2">
 				<TabItem.Header>
-					<PathIcon Data="{StaticResource book_regular}" />
+					<PathIcon Data="{StaticResource info_regular}" />
 				</TabItem.Header>
 				<TabItem.Content>
 					Addon 2 Content

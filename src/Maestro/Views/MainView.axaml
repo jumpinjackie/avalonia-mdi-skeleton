@@ -17,7 +17,7 @@
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
 				<MenuItem Header="_Connect"/>
-				<MenuItem Header="_New Resource"/>
+				<MenuItem Header="_New Resource" Command="{Binding OpenResourceCommand}" />
 				<MenuItem Header="_Open Resource"/>
 				<Separator/>
 				<MenuItem Header="Save Resource" />
@@ -73,7 +73,26 @@
 			<views:SidebarView Grid.Column="0" />
 			<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
 			<Border Grid.Column="2">
-				<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				<TabControl ItemsSource="{Binding OpenResources}">
+					<TabControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:ResourceContentViewModel">
+							<Grid ColumnDefinitions="Auto, 4, *, 4, Auto">
+								<PathIcon Grid.Column="0" Data="{StaticResource document_page_top_left_regular}" />
+								<TextBlock Grid.Column="1" />
+								<TextBlock VerticalAlignment="Center" FontSize="14" Grid.Column="2" Text="{Binding Title}" />
+								<TextBlock Grid.Column="3" />
+								<Button Grid.Column="4" Command="{Binding CloseCommand}">
+									<PathIcon Data="{StaticResource dismiss_circle_regular}" />
+								</Button>
+							</Grid>
+						</DataTemplate>
+					</TabControl.ItemTemplate>
+					<TabControl.ContentTemplate>
+						<DataTemplate x:DataType="vm:ResourceContentViewModel">
+							<TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</DataTemplate>
+					</TabControl.ContentTemplate>
+				</TabControl>
 			</Border>
 		</Grid>
 	</DockPanel>
