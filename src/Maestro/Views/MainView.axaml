@@ -72,7 +72,7 @@
 		<Grid ColumnDefinitions="350, 4, *">
 			<views:SidebarView Grid.Column="0" />
 			<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
-			<Border Grid.Column="2" Background="LightGray">
+			<Border Grid.Column="2">
 				<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</Border>
 		</Grid>
