@@ -1,21 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
+using Maestro.Services;
 
 namespace Maestro.ViewModels;
 
 public partial class ResourceContentViewModel : ViewModelBase
 {
-    readonly ObservableCollection<ResourceContentViewModel> _parentCollection;
+    readonly AppServices _appServices;
 
-    public ResourceContentViewModel(ObservableCollection<ResourceContentViewModel> parentCollection)
+    public ResourceContentViewModel(AppServices appServices)
     {
-        _parentCollection = parentCollection;
-    }
-
-    internal void Add()
-    {
-        _parentCollection.Add(this);
+        _appServices = appServices;
     }
 
     [ObservableProperty]
@@ -27,6 +22,6 @@ public partial class ResourceContentViewModel : ViewModelBase
     [RelayCommand]
     private void Close()
     {
-        _parentCollection.Remove(this);
+        _appServices.OpenResourceManager.Close(this.Title);
     }
 }

@@ -1,24 +1,40 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Services;
+using Maestro.Services.Messaging;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace Maestro.ViewModels;
 
-public partial class SidebarViewModel : ViewModelBase
+public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSiteMessage>
 {
+    readonly AppServices _appServices;
+
+    public SidebarViewModel(AppServices appServices)
+    {
+        _appServices = appServices;
+        this.IsActive = true;
+    }
+
     [ObservableProperty]
     private SiteViewModel? activeSite;
 
-    public ObservableCollection<SiteViewModel> ConnectedSites { get; } = new ObservableCollection<SiteViewModel>();
+    public ObservableCollection<SiteViewModel> ConnectedSites { get; } = new();
 
-    private int _siteCounter = 0;
-
-    internal async Task ConnectToSiteAsync()
+    void IRecipient<ConnectedToSiteMessage>.Receive(ConnectedToSiteMessage message)
     {
-        var name = "MapGuide Site " + _siteCounter++;
-        var svm = new SiteViewModel(this, name);
-        await svm.AddAsync();
+        var svm = new SiteViewModel(message.Name);
+
+        foreach (var f in message.Root.Folders)
+        {
+            svm.Children.Add(new FolderItemViewModel(f.Name));
+        }
+        foreach (var r in message.Root.Resources)
+        {
+            svm.Children.Add(new ResourceItemViewModel(r.Name, _appServices));
+        }
+
+        this.ConnectedSites.Add(svm);
         if (this.ActiveSite == null)
             this.ActiveSite = svm;
     }

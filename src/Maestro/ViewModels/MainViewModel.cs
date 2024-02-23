@@ -1,32 +1,69 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Services;
+using Maestro.Services.Messaging;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Maestro.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
 {
-    [ObservableProperty]
-    private SidebarViewModel sidebar = new();
+    readonly AppServices _appServices;
 
-    public ObservableCollection<ResourceContentViewModel> OpenResources { get; } = new ObservableCollection<ResourceContentViewModel>();
+    // Just to shut up designer errors
+    public MainViewModel() { }
 
-    private int _counter = 0;
-
-    [RelayCommand]
-    private void OpenResource()
+    public MainViewModel(SidebarViewModel sidebar, AppServices appServices)
     {
-        new ResourceContentViewModel(this.OpenResources)
-        {
-            Title = "New Resource " + (_counter++),
-            Text = $"Content for (New Resource {_counter})"
-        }.Add();
+        this.sidebar = sidebar;
+        _appServices = appServices;
+        this.IsActive = true;
     }
 
+    [ObservableProperty]
+    private SidebarViewModel sidebar;
+
+    public ObservableCollection<ResourceContentViewModel> OpenResources { get; } = new();
+
     [RelayCommand]
-    private Task ConnectToSite()
+    private async Task ConnectToSite()
     {
-        return this.Sidebar.ConnectToSiteAsync();
+        await _appServices.ConnectionManager.Connect();
+    }
+
+    [ObservableProperty]
+    private int openResourceIndex;
+
+    void IRecipient<OpenResourceMessage>.Receive(OpenResourceMessage message)
+    {
+        var ores = FindOpenResource(message.Name);
+        if (ores != null)
+        {
+            this.OpenResourceIndex = this.OpenResources.IndexOf(ores);
+        }
+        else
+        {
+            var rvm = new ResourceContentViewModel(_appServices)
+            {
+                Title = message.Name,
+                Text = message.Content
+            };
+            this.OpenResources.Add(rvm);
+            this.OpenResourceIndex = this.OpenResources.Count - 1;
+        }
+    }
+
+    private ResourceContentViewModel? FindOpenResource(string name) => this.OpenResources.FirstOrDefault(or => or.Title == name);
+
+    void IRecipient<CloseResourceMessage>.Receive(CloseResourceMessage message)
+    {
+        var ores = FindOpenResource(message.Name);
+        if (ores != null)
+        {
+            this.OpenResources.Remove(ores);
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Maestro.Services;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Maestro.ViewModels;
 
@@ -25,17 +27,19 @@ public abstract partial class AbstractResourceItemViewModel : ViewModelBase
 
 public partial class ResourceItemViewModel : AbstractResourceItemViewModel
 {
-    public ResourceItemViewModel(string name) : base(name)
+    readonly AppServices _appServices;
+
+    public ResourceItemViewModel(string name, AppServices orManager) : base(name)
     {
+        _appServices = orManager;
     }
 
     public override ResourceKind Kind => ResourceKind.Resource;
 
     [RelayCommand]
-    private void Open()
+    private async Task Open()
     {
-        //TODO: Figure out best way to tell the top-level VM that I want
-        //to open this resource
+        await _appServices.OpenResourceManager.OpenResourceAsync(this.Name);
     }
 }
 
