@@ -1,6 +1,6 @@
-﻿using System;
-
-using Avalonia;
+﻿using Avalonia;
+using Maestro.Core;
+using System;
 
 namespace Maestro.Desktop;
 

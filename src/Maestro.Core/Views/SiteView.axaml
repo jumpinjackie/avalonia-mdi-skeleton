@@ -3,8 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:vm="clr-namespace:Maestro.ViewModels"
-             x:Class="Maestro.Views.SiteView"
+			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
+             x:Class="Maestro.Core.Views.SiteView"
 			 x:DataType="vm:SiteViewModel">
 	<StackPanel Margin="0, 20, 0, 0">
 		<Grid ColumnDefinitions="32, 4, Auto">

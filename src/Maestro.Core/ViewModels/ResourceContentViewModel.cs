@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Maestro.Core.Services.Contracts;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public partial class ResourceContentViewModel : ViewModelBase
 {

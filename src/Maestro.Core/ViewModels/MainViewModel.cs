@@ -3,26 +3,28 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Stubs;
-using Maestro.Services.Messaging;
+using Maestro.Core.Services.Messaging;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
 {
     readonly IConnectionManager _connManager;
     readonly Func<ResourceContentViewModel> _createResourceContent;
 
-    // Just to shut up designer errors
+    // Designer-only ctor
     public MainViewModel() 
     {
         _connManager = new StubConnectionManager();
+        var orManager = new StubOpenResourceManager();
+        _createResourceContent = () => new ResourceContentViewModel(orManager);
         _sidebar = new SidebarViewModel(
             name => new FolderItemViewModel(name),
-            name => new ResourceItemViewModel(name, new StubOpenResourceManager()));
+            name => new ResourceItemViewModel(name, orManager));
     }
 
     public MainViewModel(SidebarViewModel sidebar,

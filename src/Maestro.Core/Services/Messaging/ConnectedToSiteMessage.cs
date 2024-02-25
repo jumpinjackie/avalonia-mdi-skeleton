@@ -1,4 +1,4 @@
-﻿namespace Maestro.Services.Messaging;
+﻿namespace Maestro.Core.Services.Messaging;
 
 internal class ConnectedToSiteMessage
 {

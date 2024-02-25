@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
-using Maestro.Services.Messaging;
+using Maestro.Core.Services.Messaging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

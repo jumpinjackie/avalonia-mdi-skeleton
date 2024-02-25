@@ -1,6 +1,6 @@
 ﻿using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Stubs;
-using Maestro.ViewModels;
+using Maestro.Core.ViewModels;
 using StrongInject;
 
 namespace Maestro;

@@ -4,7 +4,7 @@ using Maestro.Core.Services.Contracts;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public enum ResourceKind
 {

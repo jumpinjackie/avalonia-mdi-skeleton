@@ -3,9 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:vm="clr-namespace:Maestro.ViewModels"
-			 xmlns:views="clr-namespace:Maestro.Views"
-             x:Class="Maestro.Views.SidebarView"
+			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
+			 xmlns:views="clr-namespace:Maestro.Core.Views"
+             x:Class="Maestro.Core.Views.SidebarView"
 			 x:DataType="vm:SidebarViewModel">
 	<Design.DataContext>
 		<!-- This only sets the DataContext for the previewer in an IDE,

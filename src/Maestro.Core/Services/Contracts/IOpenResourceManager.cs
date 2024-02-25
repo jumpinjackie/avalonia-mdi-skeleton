@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace Maestro.Core.Services.Contracts
-{
-    public interface IOpenResourceManager
-    {
-        Task OpenResourceAsync(string name);
+namespace Maestro.Core.Services.Contracts;
 
-        void Close(string name);
-    }
+public interface IOpenResourceManager
+{
+    Task OpenResourceAsync(string name);
+
+    void Close(string name);
 }

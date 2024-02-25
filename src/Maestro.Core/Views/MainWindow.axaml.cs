@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace Maestro.Views;
+namespace Maestro.Core.Views;
 
 public partial class MainWindow : Window
 {

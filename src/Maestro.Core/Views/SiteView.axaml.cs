@@ -1,8 +1,8 @@
 using Avalonia.Controls;
 using Avalonia.Input;
-using Maestro.ViewModels;
+using Maestro.Core.ViewModels;
 
-namespace Maestro.Views
+namespace Maestro.Core.Views
 {
     public partial class SiteView : UserControl
     {

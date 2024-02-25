@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
-using Maestro.Services.Messaging;
+using Maestro.Core.Services.Messaging;
 using System.Threading.Tasks;
 
 namespace Maestro.Core.Services.Stubs;

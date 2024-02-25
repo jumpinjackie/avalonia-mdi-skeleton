@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public partial class SiteViewModel : ViewModelBase
 {

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Maestro.Services.Messaging;
+using Maestro.Core.Services.Messaging;
 using System;
 using System.Collections.ObjectModel;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSiteMessage>
 {

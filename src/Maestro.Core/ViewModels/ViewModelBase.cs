@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Maestro.ViewModels;
+namespace Maestro.Core.ViewModels;
 
 public class ViewModelBase : ObservableRecipient
 {

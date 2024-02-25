@@ -2,9 +2,9 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using Maestro.Views;
+using Maestro.Core.Views;
 
-namespace Maestro;
+namespace Maestro.Core;
 
 public partial class App : Application
 {

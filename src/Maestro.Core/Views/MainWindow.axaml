@@ -1,11 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:Maestro.ViewModels"
+        xmlns:vm="using:Maestro.Core.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:Maestro.Views"
+        xmlns:views="clr-namespace:Maestro.Core.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Maestro.Views.MainWindow"
+        x:Class="Maestro.Core.Views.MainWindow"
         Icon="/Assets/mapguide-maestro.ico"
         Title="MapGuide Maestro">
 	<views:MainView />
