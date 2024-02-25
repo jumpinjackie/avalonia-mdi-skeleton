@@ -22,7 +22,8 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenReso
         _createResourceContent = () => new ResourceContentViewModel(orManager);
         _sidebar = new SidebarViewModel(
             name => new FolderItemViewModel(name),
-            name => new ResourceItemViewModel(name, orManager));
+            name => new ResourceItemViewModel(name, orManager),
+            new ConnectViewModel(_connManager));
         this.IsActive = true;
     }
 

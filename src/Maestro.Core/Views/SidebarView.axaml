@@ -19,15 +19,22 @@
 					<PathIcon Data="{StaticResource globe_regular}" />
 				</TabItem.Header>
 				<TabItem.Content>
-					<ItemsControl ItemsSource="{Binding ConnectedSites}">
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<StackPanel>
-									<views:SiteView DataContext="{Binding}" />
-								</StackPanel>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
+					<StackPanel>
+						<TextBlock IsVisible="{Binding !ConnectedSites.Count}" Padding="10" HorizontalAlignment="Stretch" TextAlignment="Center" Text="You are not connected to any site" />
+						<Button IsVisible="{Binding !IsConnecting}" Command="{Binding BeginConnectCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Connect to Site" />
+						<ContentControl IsVisible="{Binding IsConnecting}">
+							<views:ConnectView DataContext="{Binding Connect}" />
+						</ContentControl>
+						<ItemsControl ItemsSource="{Binding ConnectedSites}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<StackPanel>
+										<views:SiteView DataContext="{Binding}" />
+									</StackPanel>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
 				</TabItem.Content>
 			</TabItem>
 			<TabItem ToolTip.Tip="Addon 1">

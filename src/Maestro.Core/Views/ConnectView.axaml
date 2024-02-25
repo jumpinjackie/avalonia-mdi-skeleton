@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
+			 xmlns:views="clr-namespace:Maestro.Core.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Maestro.Core.Views.ConnectView"
+			 x:DataType="vm:ConnectViewModel">
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:ConnectViewModel />
+	</Design.DataContext>
+	<StackPanel>
+		<TextBlock Text="Site" />
+		<TextBox Text="{Binding Site}" />
+		<TextBlock Text="Username" />
+		<TextBox Text="{Binding Username}" />
+		<TextBlock Text="Password" />
+		<TextBox Text="{Binding Password}" PasswordChar="*" />
+		<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*, *">
+			<Button Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Connect" Command="{Binding ConnectCommand}" />
+			<Button Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Cancel" Command="{Binding CancelConnectCommand}" />
+		</Grid>
+	</StackPanel>
+</UserControl>

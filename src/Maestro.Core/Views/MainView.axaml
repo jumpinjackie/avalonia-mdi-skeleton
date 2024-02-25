@@ -69,7 +69,7 @@
 			</Grid>
 		</Border>
 		<!-- Main body -->
-		<Grid ColumnDefinitions="350, 4, *">
+		<Grid ColumnDefinitions="400, 4, *">
 			<views:SidebarView DataContext="{Binding Sidebar}" Grid.Column="0" />
 			<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
 			<Border Grid.Column="2">

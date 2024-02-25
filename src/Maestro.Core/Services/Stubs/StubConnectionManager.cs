@@ -46,4 +46,9 @@ public class StubConnectionManager : IConnectionManager
             Root = root
         });
     }
+
+    public void CancelConnect()
+    {
+        WeakReferenceMessenger.Default.Send(new CancelConnectMessage());
+    }
 }

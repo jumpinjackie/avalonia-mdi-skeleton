@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Maestro.Core.ViewModels;
 
-public partial class LoginViewModel : ViewModelBase
+public partial class ConnectViewModel : ViewModelBase
 {
     readonly IConnectionManager _connManager;
 
     // Designer-only ctor
-    public LoginViewModel()
+    public ConnectViewModel()
     {
         _site = "http://localhost:8008/mapguide/mapagent/mapagent.fcgi";
         _username = "Administrator";
@@ -19,7 +19,7 @@ public partial class LoginViewModel : ViewModelBase
         _connManager = new StubConnectionManager();
     }
 
-    public LoginViewModel(IConnectionManager connManager)
+    public ConnectViewModel(IConnectionManager connManager)
     {
         _site = "http://localhost:8008/mapguide/mapagent/mapagent.fcgi";
         _username = "Administrator";
@@ -40,5 +40,11 @@ public partial class LoginViewModel : ViewModelBase
     private async Task Connect()
     {
         await _connManager.ConnectAsync(this.Site, this.Username, this.Password);
+    }
+
+    [RelayCommand]
+    private void CancelConnect()
+    {
+        _connManager.CancelConnect();
     }
 }
