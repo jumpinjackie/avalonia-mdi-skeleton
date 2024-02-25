@@ -16,7 +16,6 @@
 		<!-- App menu -->
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
-				<MenuItem Header="_Connect to Site" />
 				<MenuItem Header="_New Resource" />
 				<MenuItem Header="_Open Resource"/>
 				<Separator/>
