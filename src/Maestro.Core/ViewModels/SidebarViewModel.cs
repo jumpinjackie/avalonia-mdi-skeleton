@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Messaging;
+using Maestro.Core.Services.Stubs;
 using System;
 using System.Collections.ObjectModel;
 
@@ -10,6 +11,13 @@ public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSit
 {
     readonly Func<string, FolderItemViewModel> _createFolderModel;
     readonly Func<string, ResourceItemViewModel> _createResourceModel;
+
+    // Designer-only ctor
+    public SidebarViewModel()
+    {
+        _createFolderModel = name => new FolderItemViewModel(name);
+        _createResourceModel = name => new ResourceItemViewModel(name, new StubOpenResourceManager());
+    }
 
     public SidebarViewModel(Func<string, FolderItemViewModel> createFolderModel,
                             Func<string, ResourceItemViewModel> createResourceModel)
