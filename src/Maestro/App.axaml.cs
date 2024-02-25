@@ -2,8 +2,6 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-
-using Maestro.ViewModels;
 using Maestro.Views;
 
 namespace Maestro;
@@ -21,7 +19,7 @@ public partial class App : Application
         // Without this line you will get duplicate validations from both Avalonia and CT
         BindingPlugins.DataValidators.RemoveAt(0);
 
-        var cnt = Container.Instance;
+        var cnt = new Container();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
