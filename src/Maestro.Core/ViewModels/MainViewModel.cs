@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Maestro.Services;
+using Maestro.Core.Services.Contracts;
+using Maestro.Core.Services.Stubs;
 using Maestro.Services.Messaging;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,15 +13,25 @@ namespace Maestro.ViewModels;
 
 public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
 {
-    readonly AppServices _appServices;
+    readonly IConnectionManager _connManager;
+    readonly Func<ResourceContentViewModel> _createResourceContent;
 
     // Just to shut up designer errors
-    public MainViewModel() { }
-
-    public MainViewModel(SidebarViewModel sidebar, AppServices appServices)
+    public MainViewModel() 
     {
-        this._sidebar = sidebar;
-        _appServices = appServices;
+        _connManager = new StubConnectionManager();
+        _sidebar = new SidebarViewModel(
+            name => new FolderItemViewModel(name),
+            name => new ResourceItemViewModel(name, new StubOpenResourceManager()));
+    }
+
+    public MainViewModel(SidebarViewModel sidebar,
+                         IConnectionManager connManager,
+                         Func<ResourceContentViewModel> createResourceContent)
+    {
+        _sidebar = sidebar;
+        _connManager = connManager;
+        _createResourceContent = createResourceContent;
         this.IsActive = true;
     }
 
@@ -31,7 +43,7 @@ public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessa
     [RelayCommand]
     private async Task ConnectToSite()
     {
-        await _appServices.ConnectionManager.ConnectAsync();
+        await _connManager.ConnectAsync();
     }
 
     [ObservableProperty]
@@ -46,11 +58,9 @@ public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessa
         }
         else
         {
-            var rvm = new ResourceContentViewModel(_appServices)
-            {
-                Title = message.Name,
-                Text = message.Content
-            };
+            var rvm = _createResourceContent();
+            rvm.Title = message.Name;
+            rvm.Text = message.Content;
             this.OpenResources.Add(rvm);
             this.OpenResourceIndex = this.OpenResources.Count - 1;
         }

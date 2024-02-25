@@ -1,18 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using Maestro.Services;
 using Maestro.Services.Messaging;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Maestro.ViewModels;
 
 public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSiteMessage>
 {
-    readonly AppServices _appServices;
+    readonly Func<string, FolderItemViewModel> _createFolderModel;
+    readonly Func<string, ResourceItemViewModel> _createResourceModel;
 
-    public SidebarViewModel(AppServices appServices)
+    public SidebarViewModel(Func<string, FolderItemViewModel> createFolderModel,
+                            Func<string, ResourceItemViewModel> createResourceModel)
     {
-        _appServices = appServices;
+        _createFolderModel = createFolderModel;
+        _createResourceModel = createResourceModel;
         this.IsActive = true;
     }
 
@@ -27,11 +30,11 @@ public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSit
 
         foreach (var f in message.Root.Folders)
         {
-            svm.Children.Add(new FolderItemViewModel(f.Name));
+            svm.Children.Add(_createFolderModel(f.Name));
         }
         foreach (var r in message.Root.Resources)
         {
-            svm.Children.Add(new ResourceItemViewModel(r.Name, _appServices));
+            svm.Children.Add(_createResourceModel(r.Name));
         }
 
         this.ConnectedSites.Add(svm);

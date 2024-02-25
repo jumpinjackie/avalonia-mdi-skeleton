@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Maestro.Services;
+using Maestro.Core.Services.Contracts;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -27,11 +27,11 @@ public abstract partial class AbstractResourceItemViewModel : ViewModelBase
 
 public partial class ResourceItemViewModel : AbstractResourceItemViewModel
 {
-    readonly AppServices _appServices;
+    readonly IOpenResourceManager _openResManager;
 
-    public ResourceItemViewModel(string name, AppServices orManager) : base(name)
+    public ResourceItemViewModel(string name, IOpenResourceManager openResManager) : base(name)
     {
-        _appServices = orManager;
+        _openResManager = openResManager;
     }
 
     public override ResourceKind Kind => ResourceKind.Resource;
@@ -39,7 +39,7 @@ public partial class ResourceItemViewModel : AbstractResourceItemViewModel
     [RelayCommand]
     private async Task Open()
     {
-        await _appServices.OpenResourceManager.OpenResourceAsync(this.Name);
+        await _openResManager.OpenResourceAsync(this.Name);
     }
 }
 

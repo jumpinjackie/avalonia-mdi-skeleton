@@ -1,12 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Core.Services.Contracts;
 using Maestro.Services.Messaging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Maestro.Services;
+namespace Maestro.Core.Services.Stubs;
 
-public class ConnectionManager
+public class StubConnectionManager : IConnectionManager
 {
     private int _counter = 0;
 
@@ -39,7 +40,7 @@ public class ConnectionManager
         var name = $"MapGuide Site {_counter++}";
         var root = await ListResourcesAsync(null);
 
-        WeakReferenceMessenger.Default.Send(new ConnectedToSiteMessage 
+        WeakReferenceMessenger.Default.Send(new ConnectedToSiteMessage
         {
             Name = name,
             Root = root

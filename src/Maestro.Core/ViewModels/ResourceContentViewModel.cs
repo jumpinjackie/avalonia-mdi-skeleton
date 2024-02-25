@@ -1,16 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Maestro.Services;
+using Maestro.Core.Services.Contracts;
 
 namespace Maestro.ViewModels;
 
 public partial class ResourceContentViewModel : ViewModelBase
 {
-    readonly AppServices _appServices;
+    readonly IOpenResourceManager _openResManager;
 
-    public ResourceContentViewModel(AppServices appServices)
+    public ResourceContentViewModel(IOpenResourceManager openResManager)
     {
-        _appServices = appServices;
+        _openResManager = openResManager;
     }
 
     [ObservableProperty]
@@ -22,6 +22,6 @@ public partial class ResourceContentViewModel : ViewModelBase
     [RelayCommand]
     private void Close()
     {
-        _appServices.OpenResourceManager.Close(this.Title);
+        _openResManager.Close(this.Title);
     }
 }

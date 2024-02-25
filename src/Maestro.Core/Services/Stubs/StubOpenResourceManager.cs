@@ -1,14 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Core.Services.Contracts;
 using Maestro.Services.Messaging;
 using System.Threading.Tasks;
 
-namespace Maestro.Services;
+namespace Maestro.Core.Services.Stubs;
 
-public class OpenResourceManager
+public class StubOpenResourceManager : IOpenResourceManager
 {
-    public OpenResourceManager()
+    public StubOpenResourceManager()
     {
-        
+
     }
 
     public Task OpenResourceAsync(string name)
@@ -21,7 +22,7 @@ public class OpenResourceManager
         return Task.CompletedTask;
     }
 
-    internal void Close(string? title)
+    public void Close(string? title)
     {
         WeakReferenceMessenger.Default.Send(new CloseResourceMessage { Name = title });
     }
