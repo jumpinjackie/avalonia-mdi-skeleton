@@ -2,6 +2,11 @@
 
 namespace Maestro.Core.ViewModels;
 
-public class ViewModelBase : ObservableRecipient
+public class ViewModelBase : ObservableObject
 {
+}
+
+public class RecipientViewModelBase : ObservableRecipient
+{
+
 }

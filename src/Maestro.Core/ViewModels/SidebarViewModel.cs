@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace Maestro.Core.ViewModels;
 
-public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSiteMessage>
+public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<ConnectedToSiteMessage>
 {
     readonly Func<string, FolderItemViewModel> _createFolderModel;
     readonly Func<string, ResourceItemViewModel> _createResourceModel;

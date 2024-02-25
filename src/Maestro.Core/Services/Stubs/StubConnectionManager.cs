@@ -35,9 +35,9 @@ public class StubConnectionManager : IConnectionManager
         return Task.FromResult(msg);
     }
 
-    public async Task ConnectAsync()
+    public async Task ConnectAsync(string site, string username, string password)
     {
-        var name = $"MapGuide Site {_counter++}";
+        var name = $"MapGuide Site {_counter++} - {site}";
         var root = await ListResourcesAsync(null);
 
         WeakReferenceMessenger.Default.Send(new ConnectedToSiteMessage

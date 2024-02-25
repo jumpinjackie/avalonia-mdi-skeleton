@@ -1,17 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
-using Maestro.Core.Services.Stubs;
 using Maestro.Core.Services.Messaging;
+using Maestro.Core.Services.Stubs;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Maestro.Core.ViewModels;
 
-public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
+public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
 {
     readonly IConnectionManager _connManager;
     readonly Func<ResourceContentViewModel> _createResourceContent;
@@ -25,6 +23,7 @@ public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessa
         _sidebar = new SidebarViewModel(
             name => new FolderItemViewModel(name),
             name => new ResourceItemViewModel(name, orManager));
+        this.IsActive = true;
     }
 
     public MainViewModel(SidebarViewModel sidebar,
@@ -42,11 +41,13 @@ public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessa
 
     public ObservableCollection<ResourceContentViewModel> OpenResources { get; } = new();
 
+    /*
     [RelayCommand]
     private async Task ConnectToSite()
     {
         await _connManager.ConnectAsync();
     }
+    */
 
     [ObservableProperty]
     private int _openResourceIndex;
