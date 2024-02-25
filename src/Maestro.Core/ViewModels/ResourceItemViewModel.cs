@@ -16,11 +16,11 @@ public abstract partial class AbstractResourceItemViewModel : ViewModelBase
 {
     protected AbstractResourceItemViewModel(string name)
     {
-        this.name = name;
+        this._name = name;
     }
 
     [ObservableProperty]
-    private string name;
+    private string _name;
 
     public abstract ResourceKind Kind { get; }
 }
@@ -50,7 +50,7 @@ public partial class FolderItemViewModel : AbstractResourceItemViewModel
     }
 
     [ObservableProperty]
-    private bool isExpanded;
+    private bool _isExpanded;
 
     public ObservableCollection<AbstractResourceItemViewModel> Children { get; } = new();
 

@@ -34,7 +34,7 @@ public class ConnectionManager
         return Task.FromResult(msg);
     }
 
-    public async Task Connect()
+    public async Task ConnectAsync()
     {
         var name = $"MapGuide Site {_counter++}";
         var root = await ListResourcesAsync(null);

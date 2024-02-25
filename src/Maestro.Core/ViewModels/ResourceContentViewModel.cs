@@ -14,10 +14,10 @@ public partial class ResourceContentViewModel : ViewModelBase
     }
 
     [ObservableProperty]
-    private string? title;
+    private string? _title;
 
     [ObservableProperty]
-    private string? text;
+    private string? _text;
 
     [RelayCommand]
     private void Close()

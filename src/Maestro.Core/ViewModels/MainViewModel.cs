@@ -18,24 +18,24 @@ public partial class MainViewModel : ViewModelBase, IRecipient<OpenResourceMessa
 
     public MainViewModel(SidebarViewModel sidebar, AppServices appServices)
     {
-        this.sidebar = sidebar;
+        this._sidebar = sidebar;
         _appServices = appServices;
         this.IsActive = true;
     }
 
     [ObservableProperty]
-    private SidebarViewModel sidebar;
+    private SidebarViewModel _sidebar;
 
     public ObservableCollection<ResourceContentViewModel> OpenResources { get; } = new();
 
     [RelayCommand]
     private async Task ConnectToSite()
     {
-        await _appServices.ConnectionManager.Connect();
+        await _appServices.ConnectionManager.ConnectAsync();
     }
 
     [ObservableProperty]
-    private int openResourceIndex;
+    private int _openResourceIndex;
 
     void IRecipient<OpenResourceMessage>.Receive(OpenResourceMessage message)
     {

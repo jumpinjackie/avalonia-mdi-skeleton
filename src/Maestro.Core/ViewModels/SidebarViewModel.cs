@@ -17,7 +17,7 @@ public partial class SidebarViewModel : ViewModelBase, IRecipient<ConnectedToSit
     }
 
     [ObservableProperty]
-    private SiteViewModel? activeSite;
+    private SiteViewModel? _activeSite;
 
     public ObservableCollection<SiteViewModel> ConnectedSites { get; } = new();
 
