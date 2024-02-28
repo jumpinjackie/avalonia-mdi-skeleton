@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AvaloniaEdit.Document;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services;
@@ -102,7 +103,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
         {
             var rvm = _createResourceContent();
             rvm.Title = message.Name;
-            rvm.Text = message.Content?.ToString();
+            rvm.Text = new TextDocument(message.Content?.ToString());
             return rvm;
         });
     }

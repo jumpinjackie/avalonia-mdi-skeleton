@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
 			 xmlns:views="clr-namespace:Maestro.Core.Views"
+			 xmlns:AvaloniaEdit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Maestro.Core.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -14,9 +15,10 @@
 	</Design.DataContext>
 	<UserControl.DataTemplates>
 		<DataTemplate x:DataType="vm:ResourceContentViewModel">
-			<StackPanel>
-			<TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-			</StackPanel>
+			<AvaloniaEdit:TextEditor 
+				Document="{Binding Text}"
+                ShowLineNumbers="True"
+                FontFamily="Cascadia Code,Consolas,Menlo,Monospace"/>
 		</DataTemplate>
 		<DataTemplate x:DataType="vm:WelcomeViewModel">
 			<views:WelcomeView />
