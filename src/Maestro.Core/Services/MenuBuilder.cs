@@ -14,7 +14,6 @@ public class MenuBuilder
                 Header = "_File",
                 Items = [
                     new MenuItemViewModel { Header = "_New Resource" },
-                    new MenuItemViewModel { Header = "_Open Resource" },
                     new MenuItemViewModel { Header = "-" },
                     new MenuItemViewModel { Header = "Save Resource" },
                     new MenuItemViewModel { Header = "Save Resource As" },
