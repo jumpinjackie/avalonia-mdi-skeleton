@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Core.Services;
 using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Messaging;
 using Maestro.Core.Services.Stubs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -27,19 +30,24 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
             () => new ResourceItemViewModel(openDocManager),
             new ConnectViewModel(_connManager));
         this.IsActive = true;
+        this.MenuItems = new MenuBuilder().Build(this);
     }
 
     public MainViewModel(SidebarViewModel sidebar,
                          IConnectionManager connManager,
                          Func<ResourceContentViewModel> createResourceContent,
-                         Func<WelcomeViewModel> createWelcomeModel)
+                         Func<WelcomeViewModel> createWelcomeModel,
+                         MenuBuilder menuBuilder)
     {
         _sidebar = sidebar;
         _connManager = connManager;
         _createResourceContent = createResourceContent;
         _createWelcome = createWelcomeModel;
         this.IsActive = true;
+        this.MenuItems = menuBuilder.Build(this);
     }
+
+    public IReadOnlyList<MenuItemViewModel> MenuItems { get; }
 
     [ObservableProperty]
     private SidebarViewModel _sidebar;
@@ -52,7 +60,22 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     protected override void OnActivated()
     {
         base.OnActivated();
-        this.OpenTabs.Add(_createWelcome());
+        this.WelcomeCommand.Execute(null);
+    }
+
+    [RelayCommand]
+    private void Welcome()
+    {
+        var wv = this.OpenTabs.FirstOrDefault(t => t is WelcomeViewModel);
+        if (wv != null)
+        {
+            this.OpenTabIndex = this.OpenTabs.IndexOf(wv);
+        }
+        else
+        {
+            this.OpenTabs.Add(_createWelcome());
+            this.OpenTabIndex = this.OpenTabs.Count - 1;
+        }
     }
 
     void IRecipient<OpenDocumentMessage>.Receive(OpenDocumentMessage message)

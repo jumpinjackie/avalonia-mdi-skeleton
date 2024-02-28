@@ -24,6 +24,17 @@
 	</UserControl.DataTemplates>
 	<DockPanel LastChildFill="True">
 		<!-- App menu -->
+		<Menu DockPanel.Dock="Top" ItemsSource="{Binding MenuItems}">
+			<Menu.Styles>
+				<Style Selector="MenuItem" x:DataType="vm:MenuItemViewModel">
+					<Setter Property="Header" Value="{Binding Header}"/>
+					<Setter Property="ItemsSource" Value="{Binding Items}"/>
+					<Setter Property="Command" Value="{Binding Command}"/>
+					<Setter Property="CommandParameter" Value="{Binding CommandParameter}"/>
+				</Style>
+			</Menu.Styles>
+		</Menu>
+		<!--
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="_File">
 				<MenuItem Header="_New Resource" />
@@ -61,6 +72,7 @@
 				<MenuItem Header="About MapGuide Maestro" />
 			</MenuItem>
 		</Menu>
+		-->
 		<!-- Status bar -->
 		<Border Padding="4, 4, 4, 4" DockPanel.Dock="Bottom">
 			<Grid ColumnDefinitions="Auto,*,Auto">
