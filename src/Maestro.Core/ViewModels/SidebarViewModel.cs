@@ -20,8 +20,8 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     public SidebarViewModel()
     {
         _createFolderModel = name => new FolderItemViewModel(name);
-        _createResourceModel = name => new ResourceItemViewModel(name, new StubOpenResourceManager());
-        _connect = new ConnectViewModel(new StubConnectionManager());
+        _createResourceModel = name => new ResourceItemViewModel(name, new StubOpenDocumentManager(WeakReferenceMessenger.Default));
+        _connect = new ConnectViewModel(new StubConnectionManager(WeakReferenceMessenger.Default));
     }
 
     public SidebarViewModel(Func<string, FolderItemViewModel> createFolderModel,

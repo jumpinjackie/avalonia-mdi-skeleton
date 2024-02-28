@@ -13,6 +13,8 @@
 		<vm:ConnectViewModel />
 	</Design.DataContext>
 	<StackPanel>
+		<TextBlock FontSize="24" Text="Connect to Site" />
+		<Separator />
 		<TextBlock Text="Site" />
 		<TextBox Text="{Binding Site}" />
 		<TextBlock Text="Username" />

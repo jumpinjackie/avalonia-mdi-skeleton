@@ -12,6 +12,14 @@
 		to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<vm:MainViewModel />
 	</Design.DataContext>
+	<UserControl.DataTemplates>
+		<DataTemplate x:DataType="vm:ResourceContentViewModel">
+			<TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</DataTemplate>
+		<DataTemplate x:DataType="vm:WelcomeViewModel">
+			<views:WelcomeView />
+		</DataTemplate>
+	</UserControl.DataTemplates>
 	<DockPanel LastChildFill="True">
 		<!-- App menu -->
 		<Menu DockPanel.Dock="Top">
@@ -72,10 +80,10 @@
 			<views:SidebarView DataContext="{Binding Sidebar}" Grid.Column="0" />
 			<GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
 			<Border Grid.Column="2">
-				<TabControl SelectedIndex="{Binding OpenResourceIndex}" ItemsSource="{Binding OpenResources}">
+				<TabControl SelectedIndex="{Binding OpenTabIndex}" ItemsSource="{Binding OpenTabs}">
 					<TabControl.ItemTemplate>
-						<DataTemplate x:DataType="vm:ResourceContentViewModel">
-							<Grid ColumnDefinitions="Auto, 4, 160, 4, Auto">
+						<DataTemplate x:DataType="vm:TabDocumentViewModel">
+							<Grid ColumnDefinitions="Auto, 4, 100, 4, Auto">
 								<PathIcon Grid.Column="0" Data="{StaticResource document_page_top_left_regular}" />
 								<TextBlock Grid.Column="1" />
 								<TextBlock Grid.Column="2" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="14" ToolTip.Tip="{Binding Title}" Text="{Binding Title}" />
@@ -86,11 +94,6 @@
 							</Grid>
 						</DataTemplate>
 					</TabControl.ItemTemplate>
-					<TabControl.ContentTemplate>
-						<DataTemplate x:DataType="vm:ResourceContentViewModel">
-							<TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						</DataTemplate>
-					</TabControl.ContentTemplate>
 				</TabControl>
 			</Border>
 		</Grid>

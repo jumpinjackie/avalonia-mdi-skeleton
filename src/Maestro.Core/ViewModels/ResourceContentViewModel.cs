@@ -4,24 +4,12 @@ using Maestro.Core.Services.Contracts;
 
 namespace Maestro.Core.ViewModels;
 
-public partial class ResourceContentViewModel : ViewModelBase
+public partial class ResourceContentViewModel : TabDocumentViewModel
 {
-    readonly IOpenResourceManager _openResManager;
-
-    public ResourceContentViewModel(IOpenResourceManager openResManager)
-    {
-        _openResManager = openResManager;
-    }
-
-    [ObservableProperty]
-    private string? _title;
+    public ResourceContentViewModel(IOpenDocumentManager openDocManager)
+        : base(openDocManager)
+    { }
 
     [ObservableProperty]
     private string? _text;
-
-    [RelayCommand]
-    private void Close()
-    {
-        _openResManager.Close(this.Title);
-    }
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Stubs;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ public partial class ConnectViewModel : ViewModelBase
         _site = "http://localhost:8008/mapguide/mapagent/mapagent.fcgi";
         _username = "Administrator";
         _password = "admin";
-        _connManager = new StubConnectionManager();
+        _connManager = new StubConnectionManager(WeakReferenceMessenger.Default);
     }
 
     public ConnectViewModel(IConnectionManager connManager)

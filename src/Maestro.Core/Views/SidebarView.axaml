@@ -19,9 +19,14 @@
 					<PathIcon Data="{StaticResource globe_regular}" />
 				</TabItem.Header>
 				<TabItem.Content>
-					<StackPanel>
-						<TextBlock IsVisible="{Binding !ConnectedSites.Count}" Padding="10" HorizontalAlignment="Stretch" TextAlignment="Center" Text="You are not connected to any site" />
-						<Button IsVisible="{Binding !IsConnecting}" Command="{Binding BeginConnectCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Connect to Site" />
+					<StackPanel HorizontalAlignment="Center">
+						<Grid ColumnDefinitions="24, *" IsVisible="{Binding !ConnectedSites.Count}">
+							<PathIcon Grid.Column="0" Padding="10" Data="{StaticResource warning_regular}" />
+							<TextBlock Grid.Column="1" Padding="10" HorizontalAlignment="Stretch" TextAlignment="Center" Text="You are not connected to any site" />
+						</Grid>
+						<Button IsVisible="{Binding !IsConnecting}" Command="{Binding BeginConnectCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+							<TextBlock Text="Connect to Site" />
+						</Button>
 						<ContentControl IsVisible="{Binding IsConnecting}">
 							<views:ConnectView DataContext="{Binding Connect}" />
 						</ContentControl>

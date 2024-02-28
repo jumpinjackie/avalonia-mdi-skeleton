@@ -1,6 +1,6 @@
 ﻿namespace Maestro.Core.Services.Messaging;
 
-internal class CloseResourceMessage
+internal class CloseDocumentMessage
 {
     public required string Name { get; set; }
 }

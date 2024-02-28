@@ -5,16 +5,18 @@ using System.Threading.Tasks;
 
 namespace Maestro.Core.Services.Stubs;
 
-public class StubOpenResourceManager : IOpenResourceManager
+public class StubOpenDocumentManager : IOpenDocumentManager
 {
-    public StubOpenResourceManager()
-    {
+    readonly IMessenger _messenger;
 
+    public StubOpenDocumentManager(IMessenger messenger)
+    {
+        _messenger = messenger;
     }
 
-    public Task OpenResourceAsync(string name)
+    public Task OpenDocumentAsync(string name)
     {
-        WeakReferenceMessenger.Default.Send(new OpenResourceMessage
+        _messenger.Send(new OpenDocumentMessage
         {
             Name = "New MapGuide Resource " + name,
             Content = $"Content for (New MapGuide Resource {name})"
@@ -22,8 +24,8 @@ public class StubOpenResourceManager : IOpenResourceManager
         return Task.CompletedTask;
     }
 
-    public void Close(string? title)
+    public void CloseDocument(string? title)
     {
-        WeakReferenceMessenger.Default.Send(new CloseResourceMessage { Name = title });
+        _messenger.Send(new CloseDocumentMessage { Name = title });
     }
 }

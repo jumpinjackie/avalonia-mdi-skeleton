@@ -27,9 +27,9 @@ public abstract partial class AbstractResourceItemViewModel : ViewModelBase
 
 public partial class ResourceItemViewModel : AbstractResourceItemViewModel
 {
-    readonly IOpenResourceManager _openResManager;
+    readonly IOpenDocumentManager _openResManager;
 
-    public ResourceItemViewModel(string name, IOpenResourceManager openResManager) : base(name)
+    public ResourceItemViewModel(string name, IOpenDocumentManager openResManager) : base(name)
     {
         _openResManager = openResManager;
     }
@@ -39,7 +39,7 @@ public partial class ResourceItemViewModel : AbstractResourceItemViewModel
     [RelayCommand]
     private async Task Open()
     {
-        await _openResManager.OpenResourceAsync(this.Name);
+        await _openResManager.OpenDocumentAsync(this.Name);
     }
 }
 

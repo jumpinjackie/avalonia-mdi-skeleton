@@ -9,7 +9,13 @@ namespace Maestro.Core.Services.Stubs;
 
 public class StubConnectionManager : IConnectionManager
 {
+    readonly IMessenger _messenger;
     private int _counter = 0;
+
+    public StubConnectionManager(IMessenger messenger)
+    {
+        _messenger = messenger;
+    }
 
     private Task<ResourceListMessage> ListResourcesAsync(string? path)
     {
@@ -40,7 +46,7 @@ public class StubConnectionManager : IConnectionManager
         var name = $"MapGuide Site {_counter++} - {site}";
         var root = await ListResourcesAsync(null);
 
-        WeakReferenceMessenger.Default.Send(new ConnectedToSiteMessage
+        _messenger.Send(new ConnectedToSiteMessage
         {
             Name = name,
             Root = root
@@ -49,6 +55,6 @@ public class StubConnectionManager : IConnectionManager
 
     public void CancelConnect()
     {
-        WeakReferenceMessenger.Default.Send(new CancelConnectMessage());
+        _messenger.Send(new CancelConnectMessage());
     }
 }

@@ -9,75 +9,76 @@ using System.Linq;
 
 namespace Maestro.Core.ViewModels;
 
-public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenResourceMessage>, IRecipient<CloseResourceMessage>
+public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocumentMessage>, IRecipient<CloseDocumentMessage>
 {
     readonly IConnectionManager _connManager;
     readonly Func<ResourceContentViewModel> _createResourceContent;
+    readonly Func<WelcomeViewModel> _createWelcome;
 
     // Designer-only ctor
     public MainViewModel() 
     {
-        _connManager = new StubConnectionManager();
-        var orManager = new StubOpenResourceManager();
-        _createResourceContent = () => new ResourceContentViewModel(orManager);
+        _connManager = new StubConnectionManager(WeakReferenceMessenger.Default);
+        var openDocManager = new StubOpenDocumentManager(WeakReferenceMessenger.Default);
+        _createResourceContent = () => new ResourceContentViewModel(openDocManager);
+        _createWelcome = () => new WelcomeViewModel(openDocManager);
         _sidebar = new SidebarViewModel(
             name => new FolderItemViewModel(name),
-            name => new ResourceItemViewModel(name, orManager),
+            name => new ResourceItemViewModel(name, openDocManager),
             new ConnectViewModel(_connManager));
         this.IsActive = true;
     }
 
     public MainViewModel(SidebarViewModel sidebar,
                          IConnectionManager connManager,
-                         Func<ResourceContentViewModel> createResourceContent)
+                         Func<ResourceContentViewModel> createResourceContent,
+                         Func<WelcomeViewModel> createWelcomeModel)
     {
         _sidebar = sidebar;
         _connManager = connManager;
         _createResourceContent = createResourceContent;
+        _createWelcome = createWelcomeModel;
         this.IsActive = true;
     }
 
     [ObservableProperty]
     private SidebarViewModel _sidebar;
 
-    public ObservableCollection<ResourceContentViewModel> OpenResources { get; } = new();
-
-    /*
-    [RelayCommand]
-    private async Task ConnectToSite()
-    {
-        await _connManager.ConnectAsync();
-    }
-    */
+    public ObservableCollection<TabDocumentViewModel> OpenTabs { get; } = new();
 
     [ObservableProperty]
-    private int _openResourceIndex;
+    private int _openTabIndex;
 
-    void IRecipient<OpenResourceMessage>.Receive(OpenResourceMessage message)
+    protected override void OnActivated()
     {
-        var ores = FindOpenResource(message.Name);
+        base.OnActivated();
+        this.OpenTabs.Add(_createWelcome());
+    }
+
+    void IRecipient<OpenDocumentMessage>.Receive(OpenDocumentMessage message)
+    {
+        var ores = FindOpenTab(message.Name);
         if (ores != null)
         {
-            this.OpenResourceIndex = this.OpenResources.IndexOf(ores);
+            this.OpenTabIndex = this.OpenTabs.IndexOf(ores);
         }
         else
         {
             var rvm = _createResourceContent();
             rvm.Title = message.Name;
-            rvm.Text = message.Content;
-            this.OpenResources.Add(rvm);
-            this.OpenResourceIndex = this.OpenResources.Count - 1;
+            this.OpenTabs.Add(rvm);
+            this.OpenTabIndex = this.OpenTabs.Count - 1;
         }
     }
 
-    private ResourceContentViewModel? FindOpenResource(string name) => this.OpenResources.FirstOrDefault(or => or.Title == name);
+    private TabDocumentViewModel? FindOpenTab(string name) => this.OpenTabs.FirstOrDefault(or => or.Title == name);
 
-    void IRecipient<CloseResourceMessage>.Receive(CloseResourceMessage message)
+    void IRecipient<CloseDocumentMessage>.Receive(CloseDocumentMessage message)
     {
-        var ores = FindOpenResource(message.Name);
+        var ores = FindOpenTab(message.Name);
         if (ores != null)
         {
-            this.OpenResources.Remove(ores);
+            this.OpenTabs.Remove(ores);
         }
     }
 }

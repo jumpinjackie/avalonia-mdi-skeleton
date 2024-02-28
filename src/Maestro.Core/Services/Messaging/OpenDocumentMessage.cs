@@ -1,8 +1,8 @@
 ﻿namespace Maestro.Core.Services.Messaging;
 
-internal class OpenResourceMessage
+internal class OpenDocumentMessage
 {
-    public required string Content { get; set; }
+    public object? Content { get; set; }
     
     public required string Name { get; set; }
 }
