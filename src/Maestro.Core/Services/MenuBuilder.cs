@@ -47,7 +47,7 @@ public class MenuBuilder
                         ]
                     },
                     new MenuItemViewModel { Header = "-" },
-                    new MenuItemViewModel { Header = "Options" }
+                    new MenuItemViewModel { Header = "Options", Command = vm.OptionsCommand }
                 ]
             },
             new MenuItemViewModel {

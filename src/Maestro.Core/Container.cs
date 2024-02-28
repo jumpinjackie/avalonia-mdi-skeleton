@@ -10,6 +10,7 @@ namespace Maestro;
 [Register(typeof(MainViewModel), Scope.SingleInstance)]
 [Register(typeof(SidebarViewModel), Scope.SingleInstance)]
 [Register(typeof(ConnectViewModel), Scope.SingleInstance)]
+[Register(typeof(OptionsViewModel), Scope.SingleInstance)]
 [Register(typeof(FolderItemViewModel))]
 [Register(typeof(ResourceItemViewModel))]
 [Register(typeof(ResourceContentViewModel))]

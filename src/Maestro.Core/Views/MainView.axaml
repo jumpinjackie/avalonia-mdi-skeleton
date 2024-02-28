@@ -21,6 +21,9 @@
 		<DataTemplate x:DataType="vm:WelcomeViewModel">
 			<views:WelcomeView />
 		</DataTemplate>
+		<DataTemplate x:DataType="vm:OptionsViewModel">
+			<views:OptionsView />
+		</DataTemplate>
 	</UserControl.DataTemplates>
 	<DockPanel LastChildFill="True">
 		<!-- App menu -->

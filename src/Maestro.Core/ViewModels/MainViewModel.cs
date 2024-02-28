@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace Maestro.Core.ViewModels;
 
@@ -17,6 +18,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     readonly IConnectionManager _connManager;
     readonly Func<ResourceContentViewModel> _createResourceContent;
     readonly Func<WelcomeViewModel> _createWelcome;
+    readonly Func<OptionsViewModel> _createOptions;
 
     // Designer-only ctor
     public MainViewModel() 
@@ -25,6 +27,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
         var openDocManager = new StubOpenDocumentManager(WeakReferenceMessenger.Default);
         _createResourceContent = () => new ResourceContentViewModel(openDocManager);
         _createWelcome = () => new WelcomeViewModel(openDocManager);
+        _createOptions = () => new OptionsViewModel(openDocManager);
         _sidebar = new SidebarViewModel(
             () => new FolderItemViewModel(),
             () => new ResourceItemViewModel(openDocManager),
@@ -37,12 +40,14 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
                          IConnectionManager connManager,
                          Func<ResourceContentViewModel> createResourceContent,
                          Func<WelcomeViewModel> createWelcomeModel,
+                         Func<OptionsViewModel> createOptions,
                          MenuBuilder menuBuilder)
     {
         _sidebar = sidebar;
         _connManager = connManager;
         _createResourceContent = createResourceContent;
         _createWelcome = createWelcomeModel;
+        _createOptions = createOptions;
         this.IsActive = true;
         this.MenuItems = menuBuilder.Build(this);
     }
@@ -64,42 +69,47 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     }
 
     [RelayCommand]
+    private void Options()
+    {
+        OpenOrActivateTab(t => t is OptionsViewModel, _createOptions);
+    }
+
+    [RelayCommand]
     private void Welcome()
     {
-        var wv = this.OpenTabs.FirstOrDefault(t => t is WelcomeViewModel);
+        OpenOrActivateTab(t => t is WelcomeViewModel, _createWelcome);
+    }
+
+    private void OpenOrActivateTab<TViewModel>(Func<TabDocumentViewModel, bool> predicate,
+                                               Func<TViewModel> factory)
+        where TViewModel : TabDocumentViewModel
+    {
+        var wv = this.OpenTabs.FirstOrDefault(predicate);
         if (wv != null)
         {
             this.OpenTabIndex = this.OpenTabs.IndexOf(wv);
         }
         else
         {
-            this.OpenTabs.Add(_createWelcome());
+            this.OpenTabs.Add(factory());
             this.OpenTabIndex = this.OpenTabs.Count - 1;
         }
     }
 
     void IRecipient<OpenDocumentMessage>.Receive(OpenDocumentMessage message)
     {
-        var ores = FindOpenTab(message.Name);
-        if (ores != null)
-        {
-            this.OpenTabIndex = this.OpenTabs.IndexOf(ores);
-        }
-        else
+        OpenOrActivateTab(or => or.Title == message.Name, () =>
         {
             var rvm = _createResourceContent();
             rvm.Title = message.Name;
             rvm.Text = message.Content?.ToString();
-            this.OpenTabs.Add(rvm);
-            this.OpenTabIndex = this.OpenTabs.Count - 1;
-        }
+            return rvm;
+        });
     }
-
-    private TabDocumentViewModel? FindOpenTab(string name) => this.OpenTabs.FirstOrDefault(or => or.Title == name);
 
     void IRecipient<CloseDocumentMessage>.Receive(CloseDocumentMessage message)
     {
-        var ores = FindOpenTab(message.Name);
+        var ores = this.OpenTabs.FirstOrDefault(or => or.Title == message.Name);
         if (ores != null)
         {
             this.OpenTabs.Remove(ores);
