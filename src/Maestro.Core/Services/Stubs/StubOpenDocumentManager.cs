@@ -14,12 +14,12 @@ public class StubOpenDocumentManager : IOpenDocumentManager
         _messenger = messenger;
     }
 
-    public Task OpenDocumentAsync(string name)
+    public Task OpenDocumentAsync(string name, object content)
     {
         _messenger.Send(new OpenDocumentMessage
         {
-            Name = "New MapGuide Resource " + name,
-            Content = $"Content for (New MapGuide Resource {name})"
+            Name = name,
+            Content = content
         });
         return Task.CompletedTask;
     }

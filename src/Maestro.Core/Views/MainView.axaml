@@ -14,7 +14,9 @@
 	</Design.DataContext>
 	<UserControl.DataTemplates>
 		<DataTemplate x:DataType="vm:ResourceContentViewModel">
+			<StackPanel>
 			<TextBlock Text="{Binding Text}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</StackPanel>
 		</DataTemplate>
 		<DataTemplate x:DataType="vm:WelcomeViewModel">
 			<views:WelcomeView />

@@ -23,8 +23,8 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
         _createResourceContent = () => new ResourceContentViewModel(openDocManager);
         _createWelcome = () => new WelcomeViewModel(openDocManager);
         _sidebar = new SidebarViewModel(
-            name => new FolderItemViewModel(name),
-            name => new ResourceItemViewModel(name, openDocManager),
+            () => new FolderItemViewModel(),
+            () => new ResourceItemViewModel(openDocManager),
             new ConnectViewModel(_connManager));
         this.IsActive = true;
     }
@@ -66,6 +66,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
         {
             var rvm = _createResourceContent();
             rvm.Title = message.Name;
+            rvm.Text = message.Content?.ToString();
             this.OpenTabs.Add(rvm);
             this.OpenTabIndex = this.OpenTabs.Count - 1;
         }

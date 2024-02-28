@@ -10,8 +10,8 @@ namespace Maestro.Core.ViewModels;
 
 public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<ConnectedToSiteMessage>, IRecipient<CancelConnectMessage>
 {
-    readonly Func<string, FolderItemViewModel> _createFolderModel;
-    readonly Func<string, ResourceItemViewModel> _createResourceModel;
+    readonly Func<FolderItemViewModel> _createFolderModel;
+    readonly Func<ResourceItemViewModel> _createResourceModel;
 
     [ObservableProperty]
     private ConnectViewModel _connect;
@@ -19,13 +19,13 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     // Designer-only ctor
     public SidebarViewModel()
     {
-        _createFolderModel = name => new FolderItemViewModel(name);
-        _createResourceModel = name => new ResourceItemViewModel(name, new StubOpenDocumentManager(WeakReferenceMessenger.Default));
+        _createFolderModel = () => new FolderItemViewModel();
+        _createResourceModel = () => new ResourceItemViewModel(new StubOpenDocumentManager(WeakReferenceMessenger.Default));
         _connect = new ConnectViewModel(new StubConnectionManager(WeakReferenceMessenger.Default));
     }
 
-    public SidebarViewModel(Func<string, FolderItemViewModel> createFolderModel,
-                            Func<string, ResourceItemViewModel> createResourceModel,
+    public SidebarViewModel(Func<FolderItemViewModel> createFolderModel,
+                            Func<ResourceItemViewModel> createResourceModel,
                             ConnectViewModel connectViewModel)
     {
         _createFolderModel = createFolderModel;
@@ -54,11 +54,11 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
 
         foreach (var f in message.Root.Folders)
         {
-            svm.Children.Add(_createFolderModel(f.Name));
+            svm.Children.Add(_createFolderModel().WithName(f.Name));
         }
         foreach (var r in message.Root.Resources)
         {
-            svm.Children.Add(_createResourceModel(r.Name));
+            svm.Children.Add(_createResourceModel().WithNameAndType(r.Name, r.Type));
         }
 
         this.ConnectedSites.Add(svm);

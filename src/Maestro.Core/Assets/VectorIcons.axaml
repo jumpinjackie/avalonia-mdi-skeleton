@@ -1,5 +1,11 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<!-- Replace icon_to_preview with the icon below you want to preview here -->
+			<PathIcon Data="{StaticResource icon_to_preview}" />
+		</Border>
+	</Design.PreviewWith>
 	<!-- 
         Source: http://avaloniaui.github.io/icons.html
     -->

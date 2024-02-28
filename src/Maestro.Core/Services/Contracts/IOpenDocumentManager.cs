@@ -4,7 +4,7 @@ namespace Maestro.Core.Services.Contracts;
 
 public interface IOpenDocumentManager
 {
-    Task OpenDocumentAsync(string name);
+    Task OpenDocumentAsync(string name, object content);
 
     void CloseDocument(string name);
 }

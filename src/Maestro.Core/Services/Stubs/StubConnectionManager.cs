@@ -2,6 +2,7 @@
 using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Messaging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,9 @@ public class StubConnectionManager : IConnectionManager
 
     private Task<ResourceListMessage> ListResourcesAsync(string? path)
     {
+        // This is basically a stub for what would be a EnumerateResources API call
+        // if this were a real implementation
+
         var msg = new ResourceListMessage
         {
             Path = path
@@ -29,13 +33,27 @@ public class StubConnectionManager : IConnectionManager
         var r = new Random();
         var numFolders = r.Next(3, 8);
         var numResources = r.Next(2, 4);
+
+        List<string> resourceTypes = [
+            "FeatureSource",
+            "LayerDefinition",
+            "MapDefinition",
+            "WebLayout",
+            "SymbolLibrary",
+            "LoadProcedure",
+            "ApplicationDefinition",
+            "SymbolDefinition",
+            "WatermarkDefinition"
+        ];
+
         foreach (int i in Enumerable.Range(0, numFolders))
         {
             msg.Folders.Add(new FolderItem { Name = "Folder " + i });
         }
         foreach (int i in Enumerable.Range(0, numResources))
         {
-            msg.Resources.Add(new ResourceItem { Name = "Resource " + i + numFolders + 1 });
+            // Add a resource of a random type
+            msg.Resources.Add(new ResourceItem { Name = "Resource " + i + numFolders + 1, Type = resourceTypes[r.Next(resourceTypes.Count)] });
         }
 
         return Task.FromResult(msg);

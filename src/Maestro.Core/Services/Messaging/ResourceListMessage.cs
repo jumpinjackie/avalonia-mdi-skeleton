@@ -10,6 +10,8 @@ internal class FolderItem
 internal class ResourceItem
 {
     public required string Name { get; set; }
+
+    public required string Type { get; set; }
 }
 
 internal class ResourceListMessage
