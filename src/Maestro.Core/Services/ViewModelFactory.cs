@@ -18,16 +18,16 @@ public class ViewModelFactory : IViewModelFactory
                             Func<ResourceItemViewModel> resourceItem,
                             Func<ResourceContentViewModel> resourceContent,
                             Func<WelcomeViewModel> welcome,
-                            Func<OptionsViewModel> options,
-                            Func<ConnectViewModel> connect,
+                            OptionsViewModel options,
+                            ConnectViewModel connect,
                             Func<SiteViewModel> site)
     {
         _folderItem = folderItem;
         _resourceItem = resourceItem;
         _resourceContent = resourceContent;
         _welcome = welcome;
-        _options = options;
-        _connect = connect;
+        _options = () => options;
+        _connect = () => connect;
         _site = site;
     }
 

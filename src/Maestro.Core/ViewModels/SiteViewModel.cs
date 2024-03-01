@@ -21,13 +21,15 @@ public partial class SiteViewModel : RecipientViewModelBase, IRecipient<FolderLi
         _vmFactory = new StubViewModelFactory();
         this.SiteName = "Test Site";
         this.Children.AddRange([
-            new FolderItemViewModel().WithName("Samples")
+            _vmFactory.FolderItem().WithName("Test Site", "Samples", Enumerable.Empty<string>())
         ]);
+        this.IsActive = true;
     }
 
     public SiteViewModel(IViewModelFactory vmFactory)
     {
         _vmFactory = vmFactory;
+        this.IsActive = true;
     }
 
     public SiteViewModel WithName(string name)
@@ -70,18 +72,18 @@ public partial class SiteViewModel : RecipientViewModelBase, IRecipient<FolderLi
             var folder = FindFolder(message.List.ParentPath.ToArray(), Children);
             if (folder != null)
             {
-                
+                this.PopulateFolder(message.SiteName, message.List, folder);
             }
         }
     }
 
-    internal void PopulateFolder(ResourceListMessage root, IFolderItemViewModel folder)
+    internal void PopulateFolder(string siteName, ResourceListMessage list, IFolderItemViewModel folder)
     {
-        foreach (var f in root.Folders)
+        foreach (var f in list.Folders)
         {
-            folder.Children.Add(_vmFactory.FolderItem().WithName(f.Name));
+            folder.Children.Add(_vmFactory.FolderItem().WithName(siteName, f.Name, list.ParentPath));
         }
-        foreach (var r in root.Resources)
+        foreach (var r in list.Resources)
         {
             folder.Children.Add(_vmFactory.ResourceItem().WithNameAndType(r.Name, r.Type));
         }

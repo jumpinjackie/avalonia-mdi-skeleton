@@ -20,6 +20,7 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     {
         _vmFactory = new StubViewModelFactory();
         _connect = _vmFactory.Connect();
+        this.IsActive = true;
     }
 
     public SidebarViewModel(IViewModelFactory vmFactory)
@@ -47,7 +48,7 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     {
         var svm = _vmFactory.Site();
         svm.SiteName = message.SiteName;
-        svm.PopulateFolder(message.Root, svm);
+        svm.PopulateFolder(message.SiteName, message.Root, svm);
 
         this.ConnectedSites.Add(svm);
         if (this.ActiveSite == null)

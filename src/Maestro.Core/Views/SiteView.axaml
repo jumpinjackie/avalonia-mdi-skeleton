@@ -2,31 +2,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
 			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
              x:Class="Maestro.Core.Views.SiteView"
 			 x:DataType="vm:SiteViewModel">
-	<StackPanel Margin="0, 20, 0, 0">
-		<Grid ColumnDefinitions="32, 4, Auto">
-			<PathIcon Grid.Column="0" Data="{StaticResource globe_regular}" />
-			<TextBlock Grid.Column="2" Text="{Binding SiteName}" />
-		</Grid>
-		<TreeView ItemsSource="{Binding Children}">
-			<TreeView.DataTemplates>
-				<DataTemplate DataType="{x:Type vm:FolderItemViewModel}">
-					<Grid ColumnDefinitions="32, Auto, 4, *">
-						<PathIcon Grid.Column="0" Data="{StaticResource chevron_right_regular}" />
-						<PathIcon Grid.Column="1" Data="{StaticResource folder_regular}" />
-						<TextBlock Grid.Column="3" Text="{Binding Name}"/>
-					</Grid>
-				</DataTemplate>
-				<DataTemplate DataType="{x:Type vm:ResourceItemViewModel}">
-					<Grid DoubleTapped="OnTreeNodeDoubleTap" ColumnDefinitions="32, Auto, 4, *">
-						<PathIcon Grid.Column="1" Data="{StaticResource document_regular}" />
-						<TextBlock Grid.Column="3" Text="{Binding Name}"/>
-					</Grid>
-				</DataTemplate>
-			</TreeView.DataTemplates>
-		</TreeView>
-	</StackPanel>
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:SiteViewModel />
+	</Design.DataContext>
+	<ScrollViewer>
+		<StackPanel Margin="0, 20, 0, 0">
+			<Grid ColumnDefinitions="32, 4, Auto">
+				<PathIcon Grid.Column="0" Data="{StaticResource globe_regular}" />
+				<TextBlock Grid.Column="2" Text="{Binding SiteName}" />
+			</Grid>
+			<TreeView ItemsSource="{Binding Children}" 
+					  AutoScrollToSelectedItem="True"
+					  x:Name="treeView"
+					  ScrollViewer.VerticalScrollBarVisibility="Auto"
+					  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+				<TreeView.Styles>
+					<Style Selector="TreeViewItem" x:DataType="vm:FolderItemViewModel">
+						<Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+					</Style>
+					<!-- 
+					FIXME: This will also target parent folder nodes of the currently hovered folder node.
+					
+					I cannot figure out the exact selector the only pick the *hover highlighted* element, or
+					alternatively (if it's even possible) only the leafmost TreeViewItem:pointer
+					-->
+					<Style Selector="TreeViewItem:pointerover > Grid > Button" x:DataType="vm:FolderItemViewModel">
+						<Setter Property="IsVisible" Value="True" />
+					</Style>
+					<Style Selector="TreeViewItem > Grid > Button" x:DataType="vm:FolderItemViewModel">
+						<Setter Property="IsVisible" Value="False" />
+					</Style>
+				</TreeView.Styles>
+				<TreeView.DataTemplates>
+					<TreeDataTemplate DataType="vm:FolderItemViewModel" ItemsSource="{Binding Children}">
+						<!--
+						<Border Background="Transparent" BorderBrush="Red" BorderThickness="2">
+						-->
+						<Grid ColumnDefinitions="34, 4, *, 34">
+							<PathIcon Grid.Column="0" Data="{StaticResource folder_regular}" />
+							<TextBlock VerticalAlignment="Center" Grid.Column="2" Text="{Binding Name}"/>
+							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding ExpandCommand}" ToolTip.Tip="Open this folder">
+								<PathIcon Data="{StaticResource folder_open_regular}" />
+							</Button>
+						</Grid>
+						<!--
+						</Border>
+						-->
+					</TreeDataTemplate>
+					<DataTemplate DataType="vm:ResourceItemViewModel">
+						<!--
+						<Border BorderBrush="Green" BorderThickness="2">
+						-->
+						<Grid ColumnDefinitions="34, 4, *, 34">
+							<PathIcon Grid.Column="0" Data="{StaticResource document_regular}" />
+							<TextBlock VerticalAlignment="Center" Grid.Column="2" Text="{Binding Name}"/>
+							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding OpenCommand}" ToolTip.Tip="Open this resource">
+								<PathIcon Data="{StaticResource open_regular}" />
+							</Button>
+						</Grid>
+						<!--
+						</Border>
+						-->
+					</DataTemplate>
+				</TreeView.DataTemplates>
+			</TreeView>
+		</StackPanel>
+	</ScrollViewer>
 </UserControl>

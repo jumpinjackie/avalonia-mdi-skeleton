@@ -11,10 +11,11 @@ public abstract partial class TabDocumentViewModel : RecipientViewModelBase
     protected TabDocumentViewModel(IOpenDocumentManager openDocManager)
     {
         _openDocManager = openDocManager;
+        this.Title = string.Empty;
     }
 
     [ObservableProperty]
-    private string? _title;
+    private string _title;
 
     [RelayCommand]
     private void Close()

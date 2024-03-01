@@ -24,7 +24,7 @@ public class StubOpenDocumentManager : IOpenDocumentManager
         return Task.CompletedTask;
     }
 
-    public void CloseDocument(string? title)
+    public void CloseDocument(string title)
     {
         _messenger.Send(new CloseDocumentMessage { Name = title });
     }

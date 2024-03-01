@@ -23,7 +23,7 @@ internal class StubViewModelFactory : IViewModelFactory
         _connManager = new StubConnectionManager(WeakReferenceMessenger.Default);
         _docManager = new StubOpenDocumentManager(WeakReferenceMessenger.Default);
 
-        _folderItem = () => new FolderItemViewModel();
+        _folderItem = () => new FolderItemViewModel(_connManager);
         _resourceItem = () => new ResourceItemViewModel(_docManager);
         _resourceContent = () => new ResourceContentViewModel(_docManager);
         _welcome = () => new WelcomeViewModel(_docManager);
