@@ -22,6 +22,8 @@ jobs:
         dotnet-version: 8.0.x
     - name: Add wasm workload
       run: dotnet workload install wasm-tools
+    - name: Add pupnet
+      run: dotnet tool install -g KuiperZone.PupNet
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -29,16 +31,21 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish windows
-      run: dotnet publish -c Release -r win-x64 --self-contained -o publish/desktop/win-x64 ./src/Maestro.Desktop
-    - name: Publish windows single file
-      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true --self-contained -o publish/desktop-sf/win-x64 ./src/Maestro.Desktop
+      run: pupnet --runtime win-x64 --kind zip
+    #- name: Publish windows single file
+    #  run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true --self-contained -o publish/desktop-sf/win-x64 ./src/Maestro.Desktop
     - name: Publish linux
-      run: dotnet publish -c Release -r linux-x64 --self-contained -o publish/desktop/linux-x64 ./src/Maestro.Desktop
+      run: pupnet --runtime linux-x64 --kind zip --skip-yes
+    - name: Publish osx
+      run: pupnet --runtime osx-x64 --kind zip --skip-yes
     - name: Publish WASM AppBundle
       run: |
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
-        mkdir -p ./publish
-        cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./publish/browser-wasm
+        mkdir -p ./artifacts
+        cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./artifacts/browser-wasm
+        tar -zcf ./artifacts/mapguide-maestro-wasm-appbundle.tar.gz -C ./artifacts/browser-wasm .
+    - name: Publish linux appimage
+      run: pupnet --runtime linux-x64 --kind appimage --skip-yes
     - name: Deploy WASM AppBundle to GH pages
       uses: peaceiris/actions-gh-pages@v3
       with:
