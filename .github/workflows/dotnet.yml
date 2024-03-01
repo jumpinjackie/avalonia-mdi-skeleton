@@ -45,7 +45,7 @@ jobs:
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
         mkdir -p ./artifacts
         cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./artifacts/browser-wasm
-        tar -zcf ./artifacts/mapguide-maestro-wasm-appbundle.tar.gz -C ./artifacts/browser-wasm .
+        tar -zcf ./artifacts/files/mapguide-maestro-wasm-appbundle.tar.gz -C ./artifacts/browser-wasm .
     - name: Publish linux appimage
       run: pupnet --runtime linux-x64 --kind appimage --skip-yes
     - name: Deploy WASM AppBundle to GH pages
@@ -53,4 +53,9 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: ${{ github.ref_name }}
-        publish_dir: ./publish/browser-wasm
+        publish_dir: ./artifacts/browser-wasm
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: artifacts/files/*
