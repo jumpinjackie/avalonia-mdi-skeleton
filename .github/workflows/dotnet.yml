@@ -39,3 +39,8 @@ jobs:
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
         mkdir -p ./publish
         cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./publish/browser-wasm
+    - name: Deploy WASM AppBundle to GH pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./publish/browser-wasm
