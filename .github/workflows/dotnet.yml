@@ -59,6 +59,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: ${{ github.ref_name }}
         publish_dir: ./artifacts/browser-wasm
+    - name: Check artifact dir
+      run: ls -la artifacts
     - name: Upload Windows build
       uses: actions/upload-artifact@v4
       with:
