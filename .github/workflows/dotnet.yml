@@ -41,7 +41,7 @@ jobs:
     #- name: Publish windows single file
     #  run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true --self-contained -o publish/desktop-sf/win-x64 ./src/Maestro.Desktop
     - name: Publish linux
-      run: dotnet publish -c Release -r win-x64 --self-contained -o ./artifacts/desktop/linux-x64 ./src/Maestro.Desktop
+      run: dotnet publish -c Release -r linux-x64 --self-contained -o ./artifacts/desktop/linux-x64 ./src/Maestro.Desktop
       #run: pupnet --runtime linux-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     - name: Publish osx
       run: dotnet publish -c Release -r osx-x64 --self-contained -o ./artifacts/desktop/osx-x64 ./src/Maestro.Desktop
