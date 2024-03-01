@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  VERSION: "1.0.0"
+
 jobs:
   build:
 
@@ -33,28 +36,47 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish windows
-      run: pupnet --runtime win-x64 --kind zip
+      run: dotnet publish -c Release -r win-x64 --self-contained -o aritifacts/desktop/win-x64 ./src/Maestro.Desktop
+      #run: pupnet --runtime win-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     #- name: Publish windows single file
     #  run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true --self-contained -o publish/desktop-sf/win-x64 ./src/Maestro.Desktop
     - name: Publish linux
-      run: pupnet --runtime linux-x64 --kind zip --skip-yes
+      run: dotnet publish -c Release -r win-x64 --self-contained -o aritifacts/desktop/linux-x64 ./src/Maestro.Desktop
+      #run: pupnet --runtime linux-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     - name: Publish osx
-      run: pupnet --runtime osx-x64 --kind zip --skip-yes
+      run: dotnet publish -c Release -r osx-x64 --self-contained -o aritifacts/desktop/osx-x64 ./src/Maestro.Desktop
+      #run: pupnet --runtime osx-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     - name: Publish WASM AppBundle
       run: |
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
         mkdir -p ./artifacts
         cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./artifacts/browser-wasm
-        tar -zcf ./artifacts/files/mapguide-maestro-wasm-appbundle.tar.gz -C ./artifacts/browser-wasm .
+        tar -zcf ./artifacts/files/mapguide-maestro-wasm-appbundle-${{env.VERSION}}.tar.gz -C ./artifacts/browser-wasm .
     - name: Publish linux appimage
-      run: pupnet --runtime linux-x64 --kind appimage --skip-yes
+      run: pupnet --runtime linux-x64 --kind appimage --skip-yes --app-version ${{env.VERSION}}
     - name: Deploy WASM AppBundle to GH pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: ${{ github.ref_name }}
         publish_dir: ./artifacts/browser-wasm
-    - name: Upload Artifacts
+    - name: Upload Windows build
       uses: actions/upload-artifact@v4
       with:
-        path: artifacts/files/*
+        name: MapGuideMaestro-${{env.VERSION}}-win-x64.zip
+        path: artifacts/desktop/win-x64/*
+    - name: Upload Linux build
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapGuideMaestro-${{env.VERSION}}-linux-x64.zip
+        path: artifacts/desktop/win-x64/*
+    - name: Upload OSX build
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapGuideMaestro-${{env.VERSION}}-osx-x64.zip
+        path: artifacts/desktop/win-x64/*
+    - name: Upload AppImage
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapGuideMaestro-${{env.VERSION}}.AppImage
+        path: artifacts/files/MapGuideMaestro-${{env.VERSION}}.AppImage
