@@ -25,5 +25,6 @@
 			<Button Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Connect" Command="{Binding ConnectCommand}" />
 			<Button Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Cancel" Command="{Binding CancelConnectCommand}" />
 		</Grid>
+		<TextBlock Foreground="Red" Text="{Binding ConnectError}" />
 	</StackPanel>
 </UserControl>

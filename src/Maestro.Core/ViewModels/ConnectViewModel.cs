@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Stubs;
+using System;
 using System.Threading.Tasks;
 
 namespace Maestro.Core.ViewModels;
@@ -37,10 +38,21 @@ public partial class ConnectViewModel : ViewModelBase
     [ObservableProperty]
     private string _password;
 
+    [ObservableProperty]
+    private string? _connectError;
+
     [RelayCommand]
     private async Task Connect()
     {
-        await _connManager.ConnectAsync(this.Site, this.Username, this.Password);
+        this.ConnectError = null;
+        try
+        {
+            await _connManager.ConnectAsync(this.Site, this.Username, this.Password);
+        }
+        catch (Exception ex)
+        {
+            this.ConnectError = ex.Message;
+        }
     }
 
     [RelayCommand]

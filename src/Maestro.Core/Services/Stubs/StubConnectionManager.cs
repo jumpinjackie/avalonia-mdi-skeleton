@@ -58,6 +58,12 @@ public class StubConnectionManager : IConnectionManager
 
     public async Task ConnectAsync(string site, string username, string password)
     {
+        // Mock authentication checking
+        if (!(username == "Administrator" && password == "admin"))
+        {
+            throw new Exception("Invalid login credentials");
+        }
+
         var name = $"MapGuide Site {_counter++} - {site}";
         var root = await ListResourcesInternalAsync(site, []);
 
