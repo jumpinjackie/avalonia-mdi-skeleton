@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Maestro.Browser.dll",
   "resources": {
-    "hash": "sha256-60S84av5W7fb0pNeqg1zmFv6aXyXXbfQzDJDqGwEnCg=",
+    "hash": "sha256-zCixGJZf/Z+zJAzxhTAoX1gAty0vDuTSVc65t9UAz7s=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-rCWvYZIuWzd9sKdB3PlHzHohJdkf/zcRIp2OPJfAux8="
     },
@@ -20,13 +20,13 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "Avalonia.Base.wasm": "sha256-Rfa/aW+dk7zn1U865tXwrmD3ID+TIWL7sT8+NLOHe1I=",
+      "Avalonia.Base.wasm": "sha256-f3sN0HnZLRn4DBJWAhSunfWtpNKRIU0IYF7Gzu0nHss=",
       "Avalonia.Browser.wasm": "sha256-k3phH3MC9kXpw3ivNVWuHj8XDPVWUXMQHqkOELl4qSg=",
-      "Avalonia.Controls.wasm": "sha256-CEEo2eTcScWg5iyjmWYZ2RTfSM7s3gjBpXgKJyXaz0Y=",
+      "Avalonia.Controls.wasm": "sha256-1n1MxQgYRHgvTN1YRH2XKqU8VbAZh5RzaIxzvEUjx/c=",
       "Avalonia.Dialogs.wasm": "sha256-2l8/XdqcU2g5fMlu2b1jSU014829xPC/6fFCe2BslRw=",
       "Avalonia.Fonts.Inter.wasm": "sha256-kVnKciZKcYqikHggiiCJ+S9vhX2dlGQk61nZfD9xFqc=",
-      "Avalonia.Markup.wasm": "sha256-pudy4XKb1EL/W43VEsH4J5ymt+6s5qRxaMf4g2+8yPA=",
-      "Avalonia.Markup.Xaml.wasm": "sha256-oLyJEop9H6aE7056I8KoIVVim3dOqDVSEbDfnJlB7Oc=",
+      "Avalonia.Markup.wasm": "sha256-NGvyHwwSglEtG1MhKQ6wu7LH4Z5zLJ7jIDXn2I3kvDY=",
+      "Avalonia.Markup.Xaml.wasm": "sha256-WI1vTpNC4buUT1YKV97ShgYBm9ie+AxIg5xZX/Lj/O0=",
       "Avalonia.Metal.wasm": "sha256-DxF9frlPfKNNAMsQTGJ5zODdHjGVRAgN7TxgIMqZoBU=",
       "Avalonia.OpenGL.wasm": "sha256-X5cEANoKbU9aUZDHUqlC8AYQbs7D09OQlzyAiqxW45U=",
       "Avalonia.Skia.wasm": "sha256-4vgYj/1vzzjE3XNtzsdTxCEJAlMzJr6NhRdmC9jMmWA=",
@@ -34,8 +34,8 @@
       "AvaloniaEdit.wasm": "sha256-gWRw+b/9/2Us5Un2+JpXKxhkSdCeJml4sX7uOYlvWS8=",
       "CommunityToolkit.Mvvm.wasm": "sha256-8i7O06VNPZkuMABcDdAnbSsFDNpw0a8Xp3y0SlaKRpE=",
       "HarfBuzzSharp.wasm": "sha256-ubdnKJyF9B0gf4M0DC+Su+1zlWdBpUPMPgxUr8wMqRc=",
-      "Maestro.Browser.wasm": "sha256-keHbnjXBuUmYdl5qOO+bumXfjDiSaHkYBByYk/2ZOPw=",
-      "Maestro.Core.wasm": "sha256-UPLJsItw80IKKsI0KkuIPoCzbM5ZO1RczFvHpNa4970=",
+      "Maestro.Browser.wasm": "sha256-Qf1uZss6cT/pj9YKB/npT42t8lMAYD8MknE/MzC544s=",
+      "Maestro.Core.wasm": "sha256-QDupbHiFm+32G3HGsCrXZ1on2lpX6XGIgkQTgL53djE=",
       "SkiaSharp.wasm": "sha256-KEyovcPIUWiINlJ4yxdJILFYSq6srozwubh+H9DoqV0=",
       "StrongInject.wasm": "sha256-VJXQj71CoM/MwLx+Vvj7CgxDQRgLVqB/12nVKo4ZM7Y=",
       "System.Collections.Concurrent.wasm": "sha256-+GOjkP4u70Loktkfeaepyg0SnJcniaLeeamO9gLUJ54=",
