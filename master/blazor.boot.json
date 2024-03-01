@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Maestro.Browser.dll",
   "resources": {
-    "hash": "sha256-YdElY58v0DCnsPDGVKX4AgJaA7LoNRMQ3Sf5GUZnGhI=",
+    "hash": "sha256-c3ozWipj6c9AUCf3IDNJkgxStwfdZS6kqwUnT4jtkOQ=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-rCWvYZIuWzd9sKdB3PlHzHohJdkf/zcRIp2OPJfAux8="
     },
@@ -34,8 +34,8 @@
       "AvaloniaEdit.wasm": "sha256-gWRw+b/9/2Us5Un2+JpXKxhkSdCeJml4sX7uOYlvWS8=",
       "CommunityToolkit.Mvvm.wasm": "sha256-8i7O06VNPZkuMABcDdAnbSsFDNpw0a8Xp3y0SlaKRpE=",
       "HarfBuzzSharp.wasm": "sha256-ubdnKJyF9B0gf4M0DC+Su+1zlWdBpUPMPgxUr8wMqRc=",
-      "Maestro.Browser.wasm": "sha256-mLJAGhOXLsmYG2U/lt/V7+HmYCA7zvRxao18WqwkphY=",
-      "Maestro.Core.wasm": "sha256-V0kWNoDUdBy1ECmYBLV3lN11Mn42xtTobI4rW15ZoG8=",
+      "Maestro.Browser.wasm": "sha256-rr+vPhA1AkiXOeIj5CErTyzCXrtD9gSmy8grLi66Faw=",
+      "Maestro.Core.wasm": "sha256-h1hl9auUmlBFC6F7EVXGrg4FLh72bdn8T0ibARpH9aA=",
       "SkiaSharp.wasm": "sha256-KEyovcPIUWiINlJ4yxdJILFYSq6srozwubh+H9DoqV0=",
       "StrongInject.wasm": "sha256-VJXQj71CoM/MwLx+Vvj7CgxDQRgLVqB/12nVKo4ZM7Y=",
       "System.Collections.Concurrent.wasm": "sha256-+GOjkP4u70Loktkfeaepyg0SnJcniaLeeamO9gLUJ54=",
