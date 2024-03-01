@@ -10,45 +10,32 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace Maestro.Core.ViewModels;
 
 public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocumentMessage>, IRecipient<CloseDocumentMessage>
 {
     readonly IConnectionManager _connManager;
-    readonly Func<ResourceContentViewModel> _createResourceContent;
-    readonly Func<WelcomeViewModel> _createWelcome;
-    readonly Func<OptionsViewModel> _createOptions;
+    readonly IViewModelFactory _vmFactory;
 
     // Designer-only ctor
     public MainViewModel() 
     {
         _connManager = new StubConnectionManager(WeakReferenceMessenger.Default);
-        var openDocManager = new StubOpenDocumentManager(WeakReferenceMessenger.Default);
-        _createResourceContent = () => new ResourceContentViewModel(openDocManager);
-        _createWelcome = () => new WelcomeViewModel(openDocManager);
-        _createOptions = () => new OptionsViewModel(openDocManager);
-        _sidebar = new SidebarViewModel(
-            () => new FolderItemViewModel(),
-            () => new ResourceItemViewModel(openDocManager),
-            new ConnectViewModel(_connManager));
+        _vmFactory = new StubViewModelFactory();
+        _sidebar = new SidebarViewModel(_vmFactory);
         this.IsActive = true;
         this.MenuItems = new MenuBuilder().Build(this);
     }
 
     public MainViewModel(SidebarViewModel sidebar,
                          IConnectionManager connManager,
-                         Func<ResourceContentViewModel> createResourceContent,
-                         Func<WelcomeViewModel> createWelcomeModel,
-                         Func<OptionsViewModel> createOptions,
+                         IViewModelFactory vmFactory,
                          MenuBuilder menuBuilder)
     {
         _sidebar = sidebar;
         _connManager = connManager;
-        _createResourceContent = createResourceContent;
-        _createWelcome = createWelcomeModel;
-        _createOptions = createOptions;
+        _vmFactory = vmFactory;
         this.IsActive = true;
         this.MenuItems = menuBuilder.Build(this);
     }
@@ -72,13 +59,13 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     [RelayCommand]
     private void Options()
     {
-        OpenOrActivateTab(t => t is OptionsViewModel, _createOptions);
+        OpenOrActivateTab(t => t is OptionsViewModel, _vmFactory.Options);
     }
 
     [RelayCommand]
     private void Welcome()
     {
-        OpenOrActivateTab(t => t is WelcomeViewModel, _createWelcome);
+        OpenOrActivateTab(t => t is WelcomeViewModel, _vmFactory.Welcome);
     }
 
     private void OpenOrActivateTab<TViewModel>(Func<TabDocumentViewModel, bool> predicate,
@@ -101,7 +88,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     {
         OpenOrActivateTab(or => or.Title == message.Name, () =>
         {
-            var rvm = _createResourceContent();
+            var rvm = _vmFactory.ResourceContent();
             rvm.Title = message.Name;
             rvm.Text = new TextDocument(message.Content?.ToString());
             return rvm;

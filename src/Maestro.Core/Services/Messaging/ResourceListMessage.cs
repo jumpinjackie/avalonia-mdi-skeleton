@@ -16,9 +16,9 @@ internal class ResourceItem
 
 internal class ResourceListMessage
 {
-    public string? Path { get; set; }
-
     public List<FolderItem> Folders { get; } = new();
 
     public List<ResourceItem> Resources { get; } = new();
+
+    public required IEnumerable<string> ParentPath { get; set; }
 }

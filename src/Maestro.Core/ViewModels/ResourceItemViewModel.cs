@@ -56,7 +56,12 @@ public partial class ResourceItemViewModel : AbstractResourceItemViewModel
     }
 }
 
-public partial class FolderItemViewModel : AbstractResourceItemViewModel
+public interface IFolderItemViewModel
+{
+    ObservableCollection<AbstractResourceItemViewModel> Children { get; }
+}
+
+public partial class FolderItemViewModel : AbstractResourceItemViewModel, IFolderItemViewModel
 {
     public FolderItemViewModel() : base()
     {

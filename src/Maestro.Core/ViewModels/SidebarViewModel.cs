@@ -1,17 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Maestro.Core.Services.Contracts;
 using Maestro.Core.Services.Messaging;
 using Maestro.Core.Services.Stubs;
-using System;
 using System.Collections.ObjectModel;
 
 namespace Maestro.Core.ViewModels;
 
 public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<ConnectedToSiteMessage>, IRecipient<CancelConnectMessage>
 {
-    readonly Func<FolderItemViewModel> _createFolderModel;
-    readonly Func<ResourceItemViewModel> _createResourceModel;
+    readonly IViewModelFactory _vmFactory;
 
     [ObservableProperty]
     private ConnectViewModel _connect;
@@ -19,18 +18,14 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     // Designer-only ctor
     public SidebarViewModel()
     {
-        _createFolderModel = () => new FolderItemViewModel();
-        _createResourceModel = () => new ResourceItemViewModel(new StubOpenDocumentManager(WeakReferenceMessenger.Default));
-        _connect = new ConnectViewModel(new StubConnectionManager(WeakReferenceMessenger.Default));
+        _vmFactory = new StubViewModelFactory();
+        _connect = _vmFactory.Connect();
     }
 
-    public SidebarViewModel(Func<FolderItemViewModel> createFolderModel,
-                            Func<ResourceItemViewModel> createResourceModel,
-                            ConnectViewModel connectViewModel)
+    public SidebarViewModel(IViewModelFactory vmFactory)
     {
-        _createFolderModel = createFolderModel;
-        _createResourceModel = createResourceModel;
-        _connect = connectViewModel;
+        _vmFactory = vmFactory;
+        _connect = vmFactory.Connect();
         this.IsActive = true;
     }
 
@@ -50,16 +45,9 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
 
     void IRecipient<ConnectedToSiteMessage>.Receive(ConnectedToSiteMessage message)
     {
-        var svm = new SiteViewModel(message.Name);
-
-        foreach (var f in message.Root.Folders)
-        {
-            svm.Children.Add(_createFolderModel().WithName(f.Name));
-        }
-        foreach (var r in message.Root.Resources)
-        {
-            svm.Children.Add(_createResourceModel().WithNameAndType(r.Name, r.Type));
-        }
+        var svm = _vmFactory.Site();
+        svm.SiteName = message.SiteName;
+        svm.PopulateFolder(message.Root, svm);
 
         this.ConnectedSites.Add(svm);
         if (this.ActiveSite == null)

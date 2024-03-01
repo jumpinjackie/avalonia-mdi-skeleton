@@ -15,6 +15,8 @@ namespace Maestro;
 [Register(typeof(ResourceItemViewModel))]
 [Register(typeof(ResourceContentViewModel))]
 [Register(typeof(WelcomeViewModel))]
+[Register(typeof(SiteViewModel))]
+[Register(typeof(ViewModelFactory), Scope.SingleInstance, typeof(IViewModelFactory))]
 [Register(typeof(MenuBuilder), Scope.SingleInstance)]
 [Register(typeof(StubConnectionManager), Scope.SingleInstance, typeof(IConnectionManager))]
 [Register(typeof(StubOpenDocumentManager), Scope.SingleInstance, typeof(IOpenDocumentManager))]

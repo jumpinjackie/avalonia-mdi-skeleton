@@ -1,8 +1,7 @@
 ﻿namespace Maestro.Core.Services.Messaging;
 
-internal class ConnectedToSiteMessage
+internal class FolderListedMessage
 {
+    public required ResourceListMessage List { get; set; }
     public required string SiteName { get; set; }
-
-    public required ResourceListMessage Root { get; set; }
 }

@@ -18,15 +18,12 @@ public class StubConnectionManager : IConnectionManager
         _messenger = messenger;
     }
 
-    private Task<ResourceListMessage> ListResourcesAsync(string? path)
+    private Task<ResourceListMessage> ListResourcesInternalAsync(string site, IEnumerable<string> path)
     {
         // This is basically a stub for what would be a EnumerateResources API call
         // if this were a real implementation
 
-        var msg = new ResourceListMessage
-        {
-            Path = path
-        };
+        var msg = new ResourceListMessage { ParentPath = path };
 
         // Simulating an enumerate resources
         //await Task.Delay(3000);
@@ -62,12 +59,22 @@ public class StubConnectionManager : IConnectionManager
     public async Task ConnectAsync(string site, string username, string password)
     {
         var name = $"MapGuide Site {_counter++} - {site}";
-        var root = await ListResourcesAsync(null);
+        var root = await ListResourcesInternalAsync(site, []);
 
         _messenger.Send(new ConnectedToSiteMessage
         {
-            Name = name,
+            SiteName = name,
             Root = root
+        });
+    }
+
+    public async Task ListResourcesAsync(string site, IEnumerable<string> path)
+    {
+        var res = await ListResourcesInternalAsync(site, path);
+        _messenger.Send(new FolderListedMessage
+        {
+            SiteName = site,
+            List = res
         });
     }
 
