@@ -59,27 +59,29 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: ${{ github.ref_name }}
         publish_dir: ./artifacts/browser-wasm
-    - name: Check artifact dir
-      run: ls -la artifacts
+    - name: Final checks before upload
+      run: |
+        chmod +x artifacts/files/*.AppImage
+        ls -la artifacts
     - name: Upload Windows build
       uses: actions/upload-artifact@v4
       with:
-        name: MapGuideMaestro-${{env.VERSION}}-win-x64.zip
+        name: MapGuideMaestro-${{env.VERSION}}-win-x64
         path: artifacts/desktop/win-x64
     - name: Upload Linux build
       uses: actions/upload-artifact@v4
       with:
-        name: MapGuideMaestro-${{env.VERSION}}-linux-x64.zip
+        name: MapGuideMaestro-${{env.VERSION}}-linux-x64
         path: artifacts/desktop/linux-x64
     - name: Upload OSX build
       uses: actions/upload-artifact@v4
       with:
-        name: MapGuideMaestro-${{env.VERSION}}-osx-x64.zip
+        name: MapGuideMaestro-${{env.VERSION}}-osx-x64
         path: artifacts/desktop/osx-x64
     - name: Upload WASM AppBundle
       uses: actions/upload-artifact@v4
       with:
-        name: MapGuideMaestro-${{env.VERSION}}-browser-wasm.zip
+        name: MapGuideMaestro-${{env.VERSION}}-browser-wasm
         path: artifacts/browser-wasm
     - name: Upload AppImage
       uses: actions/upload-artifact@v4
