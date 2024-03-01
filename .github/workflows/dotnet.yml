@@ -49,9 +49,8 @@ jobs:
     - name: Publish WASM AppBundle
       run: |
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
-        mkdir -p ./artifacts
+        mkdir -p ./artifacts/files
         cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./artifacts/browser-wasm
-        tar -zcf ./artifacts/files/mapguide-maestro-wasm-appbundle-${{env.VERSION}}.tar.gz -C ./artifacts/browser-wasm .
     - name: Publish linux appimage
       run: pupnet --runtime linux-x64 --kind appimage --skip-yes --app-version ${{env.VERSION}}
     - name: Deploy WASM AppBundle to GH pages
@@ -75,6 +74,11 @@ jobs:
       with:
         name: MapGuideMaestro-${{env.VERSION}}-osx-x64.zip
         path: artifacts/desktop/win-x64/*
+    - name: Upload WASM AppBundle
+      uses: actions/upload-artifact@v4
+      with:
+        name: MapGuideMaestro-${{env.VERSION}}-browser-wasm.zip
+        path: artifacts/browser-wasm/*
     - name: Upload AppImage
       uses: actions/upload-artifact@v4
       with:
