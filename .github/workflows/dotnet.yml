@@ -61,6 +61,9 @@ jobs:
     - name: Final checks/prep before upload
       run: |
         ls -la artifacts/files
+        mkdir -p artifacts/desktop/win-x64
+        mkdir -p artifacts/desktop/linux-x64
+        mkdir -p artifacts/desktop/osx-x64
         unzip artifacts/files/MapGuideMaestro-${{env.VERSION_PUPNET}}.win-x64.zip -d artifacts/desktop/win-x64
         unzip artifacts/files/MapGuideMaestro-${{env.VERSION_PUPNET}}.linux-x64.zip -d artifacts/desktop/linux-x64
         unzip artifacts/files/MapGuideMaestro-${{env.VERSION_PUPNET}}.osx-x64.zip -d artifacts/desktop/osx-x64
