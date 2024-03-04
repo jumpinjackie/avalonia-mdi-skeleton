@@ -39,26 +39,34 @@ jobs:
     - name: Publish windows
       run: |
         dotnet publish -c Release -r win-x64 --self-contained -o ./artifacts/desktop/win-x64 ./src/Maestro.Desktop
-        zip ./artifacts/files/MapGuideMaestro-${{env.VERSION}}-win-x64.zip ./artifacts/desktop/win-x64
+        mkdir -p ./artifacts/files
+        pushd ./artifacts/desktop/win-x64
+        zip -r ../files/MapGuideMaestro-${{env.VERSION}}-win-x64.zip .
+        popd
       #run: pupnet --runtime win-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     #- name: Publish windows single file
     #  run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:PublishTrimmed=true --self-contained -o publish/desktop-sf/win-x64 ./src/Maestro.Desktop
     - name: Publish linux
       run: |
         dotnet publish -c Release -r linux-x64 --self-contained -o ./artifacts/desktop/linux-x64 ./src/Maestro.Desktop
-        zip ./artifacts/files/MapGuideMaestro-${{env.VERSION}}-linux-x64.zip ./artifacts/desktop/linux-x64
+        pushd ./artifacts/desktop/linux-x64
+        zip -r ../files/MapGuideMaestro-${{env.VERSION}}-linux-x64.zip .
+        popd
       #run: pupnet --runtime linux-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     - name: Publish osx
       run: |
         dotnet publish -c Release -r osx-x64 --self-contained -o ./artifacts/desktop/osx-x64 ./src/Maestro.Desktop
-        zip ./artifacts/files/MapGuideMaestro-${{env.VERSION}}-osx-x64.zip ./artifacts/desktop/osx-x64
+        pushd ./artifacts/desktop/osx-x64
+        zip -r ../files/MapGuideMaestro-${{env.VERSION}}-osx-x64.zip .
+        popd
       #run: pupnet --runtime osx-x64 --kind zip --skip-yes --app-version ${{env.VERSION}}
     - name: Publish WASM AppBundle
       run: |
         dotnet publish -c Release -r browser-wasm ./src/Maestro.Browser
-        mkdir -p ./artifacts/files
         cp -R ./src/Maestro.Browser/bin/Release/net8.0/browser-wasm/AppBundle ./artifacts/browser-wasm
-        zip ./artifacts/files/MapGuideMaestro-${{env.VERSION}}-browser-wasm.zip ./artifacts/browser-wasm
+        pushd ./artifacts/browser-wasm
+        zip -r ../files/MapGuideMaestro-${{env.VERSION}}-browser-wasm.zip .
+        popd
     - name: Publish linux appimage
       run: pupnet --runtime linux-x64 --kind appimage --skip-yes --app-version ${{env.VERSION}}
     - name: Deploy WASM AppBundle to GH pages
