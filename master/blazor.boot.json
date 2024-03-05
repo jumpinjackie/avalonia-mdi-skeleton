@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Maestro.Browser.dll",
   "resources": {
-    "hash": "sha256-tTIkdx1VN3n72xP711FdQjUR/ytxfFOxWMuXsZnfTsI=",
+    "hash": "sha256-RFdSo4ICMthnQR/bSEkerNNxFi+N3wWFP14AfOOpdNI=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-rCWvYZIuWzd9sKdB3PlHzHohJdkf/zcRIp2OPJfAux8="
     },
@@ -34,8 +34,8 @@
       "AvaloniaEdit.wasm": "sha256-gWRw+b/9/2Us5Un2+JpXKxhkSdCeJml4sX7uOYlvWS8=",
       "CommunityToolkit.Mvvm.wasm": "sha256-8i7O06VNPZkuMABcDdAnbSsFDNpw0a8Xp3y0SlaKRpE=",
       "HarfBuzzSharp.wasm": "sha256-ubdnKJyF9B0gf4M0DC+Su+1zlWdBpUPMPgxUr8wMqRc=",
-      "Maestro.Browser.wasm": "sha256-crMUzknhLbVewCnxsCeTyeAdsKEQbdtkFxojOVRAkwI=",
-      "Maestro.Core.wasm": "sha256-VQLhW7aFrL1xNX9notqGZrGEaSeo/RSe/doTIaWUHFw=",
+      "Maestro.Browser.wasm": "sha256-CTBMQ4VyL0dDoCbYQ2v3m2PFdjloVM2vDt9AHUPJm1c=",
+      "Maestro.Core.wasm": "sha256-BArYNLhONPKIFmKBblKGonlzoa3qyWZo1HKEWbDy3rU=",
       "SkiaSharp.wasm": "sha256-KEyovcPIUWiINlJ4yxdJILFYSq6srozwubh+H9DoqV0=",
       "StrongInject.wasm": "sha256-VJXQj71CoM/MwLx+Vvj7CgxDQRgLVqB/12nVKo4ZM7Y=",
       "System.Collections.Concurrent.wasm": "sha256-+GOjkP4u70Loktkfeaepyg0SnJcniaLeeamO9gLUJ54=",
@@ -62,6 +62,20 @@
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-38l9Dd9qzbWHZNTlYprms6l1kC1mqOKDhE2+iRebDdc=",
       "System.Text.RegularExpressions.wasm": "sha256-jjzUE/5aSFlhkxjbjwvi2/dhbqZcLQketNBIL3vvh18=",
       "System.Web.HttpUtility.wasm": "sha256-VVvyQ73zVwojEnhXuIjU3QvIlSMNU45qvxFBgbV+xck="
+    },
+    "satelliteResources": {
+      "de": {
+        "Maestro.Core.resources.wasm": "sha256-Nu8iOw+x+kuyhE1usFL6GCgoEmlpZSgt/lXp2MQ76T4="
+      },
+      "fr": {
+        "Maestro.Core.resources.wasm": "sha256-ZY7yPhCbeAuIv955Tyz3jLdzgUZ+6ycc4bjvmJ+NXmM="
+      },
+      "ja": {
+        "Maestro.Core.resources.wasm": "sha256-6B3NwaKHIBV9an4KnkNREWPWa6Wj1wNyBMsljsGbT6w="
+      },
+      "zh-Hans": {
+        "Maestro.Core.resources.wasm": "sha256-FlfAK7SgYst9fcyJdJeqJr2iMf7fnovdAN1hyVS29y4="
+      }
     },
     "vfs": {
       "runtimeconfig.bin": {
