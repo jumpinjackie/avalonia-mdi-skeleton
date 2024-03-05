@@ -5,6 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
 			 xmlns:views="clr-namespace:Maestro.Core.Views"
+			 xmlns:assets="clr-namespace:Maestro.Core.Assets"
              x:Class="Maestro.Core.Views.SidebarView"
 			 x:DataType="vm:SidebarViewModel">
 	<Design.DataContext>
@@ -14,7 +15,7 @@
 	</Design.DataContext>
 	<TabControl TabStripPlacement="Left">
 		<TabControl.Items>
-			<TabItem ToolTip.Tip="Site Explorer">
+			<TabItem ToolTip.Tip="{x:Static assets:Resources.SiteExplorer_Title}">
 				<TabItem.Header>
 					<PathIcon Data="{StaticResource globe_regular}" />
 				</TabItem.Header>
@@ -22,10 +23,10 @@
 					<StackPanel HorizontalAlignment="Center">
 						<Grid ColumnDefinitions="24, *" IsVisible="{Binding !ConnectedSites.Count}">
 							<PathIcon Grid.Column="0" Padding="10" Data="{StaticResource warning_regular}" />
-							<TextBlock Grid.Column="1" Padding="10" HorizontalAlignment="Stretch" TextAlignment="Center" Text="You are not connected to any site" />
+							<TextBlock Grid.Column="1" Padding="10" HorizontalAlignment="Stretch" TextAlignment="Center" Text="{x:Static assets:Resources.SiteExplorer_NotConnectedWarning}" />
 						</Grid>
 						<Button IsVisible="{Binding !IsConnecting}" Command="{Binding BeginConnectCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
-							<TextBlock Text="Connect to Site" />
+							<TextBlock Text="{x:Static assets:Resources.SiteExplorer_Connect}" />
 						</Button>
 						<ContentControl IsVisible="{Binding IsConnecting}">
 							<views:ConnectView DataContext="{Binding Connect}" />
@@ -42,6 +43,7 @@
 					</StackPanel>
 				</TabItem.Content>
 			</TabItem>
+			<!--
 			<TabItem ToolTip.Tip="Addon 1">
 				<TabItem.Header>
 					<PathIcon Data="{StaticResource book_regular}" />
@@ -58,6 +60,7 @@
 					Addon 2 Content
 				</TabItem.Content>
 			</TabItem>
+			-->
 		</TabControl.Items>
 	</TabControl>
 </UserControl>

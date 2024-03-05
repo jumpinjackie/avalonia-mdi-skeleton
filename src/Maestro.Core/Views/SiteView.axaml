@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:assets="clr-namespace:Maestro.Core.Assets"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
 			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
              x:Class="Maestro.Core.Views.SiteView"
@@ -47,7 +48,7 @@
 						<Grid ColumnDefinitions="34, 4, *, 34">
 							<PathIcon Grid.Column="0" Data="{StaticResource folder_regular}" />
 							<TextBlock VerticalAlignment="Center" Grid.Column="2" Text="{Binding Name}"/>
-							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding ExpandCommand}" ToolTip.Tip="Open this folder">
+							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding ExpandCommand}" ToolTip.Tip="{x:Static assets:Resources.SiteExplorer_Tooltip_OpenFolder}">
 								<PathIcon Data="{StaticResource folder_open_regular}" />
 							</Button>
 						</Grid>
@@ -62,7 +63,7 @@
 						<Grid ColumnDefinitions="34, 4, *, 34">
 							<PathIcon Grid.Column="0" Data="{StaticResource document_regular}" />
 							<TextBlock VerticalAlignment="Center" Grid.Column="2" Text="{Binding Name}"/>
-							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding OpenCommand}" ToolTip.Tip="Open this resource">
+							<Button Grid.Column="3" Classes="actionbtn" Background="Transparent" Command="{Binding OpenCommand}" ToolTip.Tip="{x:Static assets:Resources.SiteExplorer_Tooltip_OpenResource}">
 								<PathIcon Data="{StaticResource open_regular}" />
 							</Button>
 						</Grid>

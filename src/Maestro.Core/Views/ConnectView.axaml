@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
 			 xmlns:views="clr-namespace:Maestro.Core.Views"
+			 xmlns:assets="clr-namespace:Maestro.Core.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Maestro.Core.Views.ConnectView"
 			 x:DataType="vm:ConnectViewModel">
@@ -15,15 +16,15 @@
 	<StackPanel>
 		<TextBlock FontSize="24" Text="Connect to Site" />
 		<Separator />
-		<TextBlock Text="Site" />
+		<TextBlock Text="{x:Static assets:Resources.Connect_Site}" />
 		<TextBox Text="{Binding Site}" />
-		<TextBlock Text="Username" />
+		<TextBlock Text="{x:Static assets:Resources.Connect_Username}" />
 		<TextBox Text="{Binding Username}" />
-		<TextBlock Text="Password" />
+		<TextBlock Text="{x:Static assets:Resources.Connect_Password}" />
 		<TextBox Text="{Binding Password}" PasswordChar="*" />
 		<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*, *">
-			<Button Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Connect" Command="{Binding ConnectCommand}" />
-			<Button Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Cancel" Command="{Binding CancelConnectCommand}" />
+			<Button Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Connect_Connect}" Command="{Binding ConnectCommand}" />
+			<Button Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Common_Cancel}" Command="{Binding CancelConnectCommand}" />
 		</Grid>
 		<TextBlock Foreground="Red" Text="{Binding ConnectError}" />
 	</StackPanel>

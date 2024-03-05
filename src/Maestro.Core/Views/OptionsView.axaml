@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="clr-namespace:Maestro.Core.ViewModels"
 			 xmlns:views="clr-namespace:Maestro.Core.Views"
+			 xmlns:assets="clr-namespace:Maestro.Core.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Maestro.Core.Views.OptionsView"
 			 x:DataType="vm:OptionsViewModel">
@@ -13,7 +14,7 @@
 		<vm:OptionsViewModel />
 	</Design.DataContext>
 	<StackPanel>
-		<TextBlock FontSize="24" Text="Options" />
+		<TextBlock FontSize="24" Text="{x:Static assets:Resources.Common_Options}" />
 		<Separator />
 	</StackPanel>
 </UserControl>

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Maestro.Core.ViewModels;
 
-public class MenuItemViewModel
+public partial class MenuItemViewModel : ViewModelBase
 {
     public required string Header { get; set; }
     
@@ -12,4 +13,7 @@ public class MenuItemViewModel
     public object? CommandParameter { get; set; }
     
     public IList<MenuItemViewModel>? Items { get; set; }
+
+    [ObservableProperty]
+    private bool _isEnabled = true;
 }
