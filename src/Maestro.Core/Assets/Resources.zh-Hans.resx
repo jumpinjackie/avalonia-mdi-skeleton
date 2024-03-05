@@ -118,126 +118,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cmd_CopyResourceId" xml:space="preserve">
-    <value>Copy Resource ID to clipboard</value>
+    <value>将资源 ID 复制到剪贴板</value>
   </data>
   <data name="Cmd_CreatePackage" xml:space="preserve">
-    <value>Create Package</value>
+    <value>创建包</value>
   </data>
   <data name="Cmd_Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>出口</value>
   </data>
   <data name="Cmd_FsPreview" xml:space="preserve">
-    <value>Feature Source Preview</value>
+    <value>功能源预览</value>
   </data>
   <data name="Cmd_LoadPackage" xml:space="preserve">
-    <value>Load Package</value>
+    <value>加载包</value>
   </data>
   <data name="Cmd_NewResource" xml:space="preserve">
-    <value>New Resource</value>
+    <value>新资源</value>
   </data>
   <data name="Cmd_PackageEditor" xml:space="preserve">
-    <value>Package Editor</value>
+    <value>包编辑器</value>
   </data>
   <data name="Cmd_SaveAll" xml:space="preserve">
-    <value>Save All</value>
+    <value>保存全部</value>
   </data>
   <data name="Cmd_SaveResource" xml:space="preserve">
-    <value>Save Resource</value>
+    <value>节省资源</value>
   </data>
   <data name="Cmd_SaveResourceAs" xml:space="preserve">
-    <value>Save Resource As</value>
+    <value>资源另存为</value>
   </data>
   <data name="Cmd_ServerMon" xml:space="preserve">
-    <value>Server Status Monitor</value>
+    <value>服务器状态监控</value>
   </data>
   <data name="Cmd_ShowWelcomeTab" xml:space="preserve">
-    <value>Show Welcome Tab</value>
+    <value>显示欢迎选项卡</value>
   </data>
   <data name="Cmd_SiteAdmin" xml:space="preserve">
-    <value>Site Administrator</value>
+    <value>站点管理员</value>
   </data>
   <data name="Common_About" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Common_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>复制</value>
   </data>
   <data name="Common_Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>切</value>
   </data>
   <data name="Common_Help" xml:space="preserve">
-    <value>Help</value>
+    <value>帮助</value>
   </data>
   <data name="Common_Options" xml:space="preserve">
-    <value>Options</value>
+    <value>选项</value>
   </data>
   <data name="Common_Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>粘贴</value>
   </data>
   <data name="Connect_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>连接</value>
   </data>
   <data name="Connect_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="Connect_Site" xml:space="preserve">
-    <value>Site</value>
+    <value>地点</value>
   </data>
   <data name="Connect_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>用户名</value>
   </data>
   <data name="Menu_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
-    <value>File</value>
+    <value>文件</value>
   </data>
   <data name="Menu_Tools" xml:space="preserve">
-    <value>Tools</value>
+    <value>工具</value>
   </data>
   <data name="Menu_Tools_Package" xml:space="preserve">
-    <value>Package</value>
+    <value>包裹</value>
   </data>
   <data name="SiteExplorer_Connect" xml:space="preserve">
-    <value>Connect to Site</value>
+    <value>连接到站点</value>
   </data>
   <data name="SiteExplorer_NotConnectedWarning" xml:space="preserve">
-    <value>You are not connected to any site</value>
+    <value>您没有连接到任何网站</value>
   </data>
   <data name="SiteExplorer_Title" xml:space="preserve">
-    <value>Site Explorer</value>
+    <value>站点浏览器</value>
   </data>
   <data name="SiteExplorer_Tooltip_OpenFolder" xml:space="preserve">
-    <value>Open this folder</value>
+    <value>打开这个文件夹</value>
   </data>
   <data name="SiteExplorer_Tooltip_OpenResource" xml:space="preserve">
-    <value>Open this resource</value>
+    <value>打开这个资源</value>
   </data>
   <data name="Stat_NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>未连接</value>
   </data>
   <data name="Stat_SomeOtherText" xml:space="preserve">
-    <value>Some Other Text</value>
+    <value>其他一些文字</value>
   </data>
   <data name="Welcome_AppDesc" xml:space="preserve">
-    <value>The authoring tool for MapGuide Open Source / AIMS</value>
+    <value>MapGuide 开源 / AIMS 的创作工具</value>
   </data>
   <data name="Welcome_ProjectWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>项目网站</value>
   </data>
   <data name="Welcome_Start" xml:space="preserve">
-    <value>Start</value>
+    <value>开始</value>
   </data>
   <data name="Welcome_TabTitle" xml:space="preserve">
-    <value>Welcome</value>
+    <value>欢迎</value>
   </data>
   <data name="Welcome_UsefulResources" xml:space="preserve">
-    <value>Useful Resources</value>
+    <value>有用的资源</value>
   </data>
   <data name="Welcome_UserGuide" xml:space="preserve">
-    <value>User Guide</value>
+    <value>用户指南</value>
   </data>
 </root>

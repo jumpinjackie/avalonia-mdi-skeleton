@@ -118,126 +118,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cmd_CopyResourceId" xml:space="preserve">
-    <value>Copy Resource ID to clipboard</value>
+    <value>Ressourcen-ID in die Zwischenablage kopieren</value>
   </data>
   <data name="Cmd_CreatePackage" xml:space="preserve">
-    <value>Create Package</value>
+    <value>Paket erstellen</value>
   </data>
   <data name="Cmd_Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Ausfahrt</value>
   </data>
   <data name="Cmd_FsPreview" xml:space="preserve">
-    <value>Feature Source Preview</value>
+    <value>Vorschau der Funktionsquelle</value>
   </data>
   <data name="Cmd_LoadPackage" xml:space="preserve">
-    <value>Load Package</value>
+    <value>Paket laden</value>
   </data>
   <data name="Cmd_NewResource" xml:space="preserve">
-    <value>New Resource</value>
+    <value>Neue Ressource</value>
   </data>
   <data name="Cmd_PackageEditor" xml:space="preserve">
-    <value>Package Editor</value>
+    <value>Paketeditor</value>
   </data>
   <data name="Cmd_SaveAll" xml:space="preserve">
-    <value>Save All</value>
+    <value>Rette alle</value>
   </data>
   <data name="Cmd_SaveResource" xml:space="preserve">
-    <value>Save Resource</value>
+    <value>Ressource speichern</value>
   </data>
   <data name="Cmd_SaveResourceAs" xml:space="preserve">
-    <value>Save Resource As</value>
+    <value>Ressource speichern unter</value>
   </data>
   <data name="Cmd_ServerMon" xml:space="preserve">
-    <value>Server Status Monitor</value>
+    <value>Serverstatusmonitor</value>
   </data>
   <data name="Cmd_ShowWelcomeTab" xml:space="preserve">
-    <value>Show Welcome Tab</value>
+    <value>Registerkarte Willkommen anzeigen</value>
   </data>
   <data name="Cmd_SiteAdmin" xml:space="preserve">
-    <value>Site Administrator</value>
+    <value>Seitenadministrator</value>
   </data>
   <data name="Common_About" xml:space="preserve">
-    <value>About</value>
+    <value>Um</value>
   </data>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Stornieren</value>
   </data>
   <data name="Common_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopieren</value>
   </data>
   <data name="Common_Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Schneiden</value>
   </data>
   <data name="Common_Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Helfen</value>
   </data>
   <data name="Common_Options" xml:space="preserve">
-    <value>Options</value>
+    <value>Optionen</value>
   </data>
   <data name="Common_Paste" xml:space="preserve">
     <value>Paste</value>
   </data>
   <data name="Connect_Connect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Verbinden</value>
   </data>
   <data name="Connect_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Passwort</value>
   </data>
   <data name="Connect_Site" xml:space="preserve">
     <value>Site</value>
   </data>
   <data name="Connect_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nutzername</value>
   </data>
   <data name="Menu_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
-    <value>File</value>
+    <value>Datei</value>
   </data>
   <data name="Menu_Tools" xml:space="preserve">
-    <value>Tools</value>
+    <value>Werkzeuge</value>
   </data>
   <data name="Menu_Tools_Package" xml:space="preserve">
-    <value>Package</value>
+    <value>Paket</value>
   </data>
   <data name="SiteExplorer_Connect" xml:space="preserve">
-    <value>Connect to Site</value>
+    <value>Mit der Site verbinden</value>
   </data>
   <data name="SiteExplorer_NotConnectedWarning" xml:space="preserve">
-    <value>You are not connected to any site</value>
+    <value>Sie sind mit keiner Website verbunden</value>
   </data>
   <data name="SiteExplorer_Title" xml:space="preserve">
-    <value>Site Explorer</value>
+    <value>Site-Explorer</value>
   </data>
   <data name="SiteExplorer_Tooltip_OpenFolder" xml:space="preserve">
     <value>Open this folder</value>
   </data>
   <data name="SiteExplorer_Tooltip_OpenResource" xml:space="preserve">
-    <value>Open this resource</value>
+    <value>Öffnen Sie diese Ressource</value>
   </data>
   <data name="Stat_NotConnected" xml:space="preserve">
-    <value>Not Connected</value>
+    <value>Nicht verbunden</value>
   </data>
   <data name="Stat_SomeOtherText" xml:space="preserve">
-    <value>Some Other Text</value>
+    <value>Ein anderer Text</value>
   </data>
   <data name="Welcome_AppDesc" xml:space="preserve">
-    <value>The authoring tool for MapGuide Open Source / AIMS</value>
+    <value>Das Autorentool für MapGuide Open Source / AIMS</value>
   </data>
   <data name="Welcome_ProjectWebsite" xml:space="preserve">
-    <value>Project Website</value>
+    <value>Projekt-Website</value>
   </data>
   <data name="Welcome_Start" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="Welcome_TabTitle" xml:space="preserve">
-    <value>Welcome</value>
+    <value>Willkommen</value>
   </data>
   <data name="Welcome_UsefulResources" xml:space="preserve">
-    <value>Useful Resources</value>
+    <value>Nützliche Ressourcen</value>
   </data>
   <data name="Welcome_UserGuide" xml:space="preserve">
-    <value>User Guide</value>
+    <value>Benutzerhandbuch</value>
   </data>
 </root>

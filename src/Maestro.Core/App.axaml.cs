@@ -15,7 +15,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        //Assets.Resources.Culture = new CultureInfo("en-US");
+        //Assets.Resources.Culture = new System.Globalization.CultureInfo("ja");
 
         // Line below is needed to remove Avalonia data validation.
         // Without this line you will get duplicate validations from both Avalonia and CT

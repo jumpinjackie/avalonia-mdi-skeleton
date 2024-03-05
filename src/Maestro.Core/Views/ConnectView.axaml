@@ -14,7 +14,7 @@
 		<vm:ConnectViewModel />
 	</Design.DataContext>
 	<StackPanel>
-		<TextBlock FontSize="24" Text="Connect to Site" />
+		<TextBlock FontSize="24" Text="{x:Static assets:Resources.SiteExplorer_Connect}" />
 		<Separator />
 		<TextBlock Text="{x:Static assets:Resources.Connect_Site}" />
 		<TextBox Text="{Binding Site}" />
