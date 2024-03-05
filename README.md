@@ -42,17 +42,20 @@ This skeleton app implements a hypothetical new user interface for the existing 
 # TODO
 
  * [ ] Fix sidebar treeview not presenting scrollbars on overflow despite the designer suggesting (at design-time) that this should already be working
- * [ ] i18n
+ * [ ] Basic persistent app options/settings system
+    * Theme (light/dark)
+    * Selected Language
+ * [x] i18n
  * [ ] Basic test suite
     * [ ] CI: Code coverage generation and reporting
- * [ ] Dynamic theme switching
  * [ ] CI: Changelog generation
  * [ ] CI: Release notes generation
 
 # Known Issues/Limitations
 
+ * The resx-based i18n string bundles do not work on the WASM target. Regardless of whatever culture you assign on startup, the language will always be the default (English).
  * Node action buttons on the main tree view should only be displaying for the actively hovered node, but currently displays it for the hovered node *and all of its parent folder nodes*. I can't seem to nail down the correct selector (if this is even possible) to only cover action buttons for the actively hovered node.
- * WASM target support is a limiting factor in determining what packages we're using.
+ * The choice of packages used and patterns being employed are mostly constrained by our desire for a functional WASM target.
     * For example, I wanted to use [this library](https://github.com/mysteryx93/HanumanInstitute.MvvmDialogs) for easy dialogs, but it didn't work in a WASM environment.
  * This author is not an expert on WPF or any other XAML-based frameworks and their best practices and so may be doing some things wrong 
     * Feel free to correct me through pull requests 😉
