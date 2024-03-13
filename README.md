@@ -16,7 +16,7 @@ This skeleton app implements a hypothetical new user interface for the existing 
  * Supports Desktop and Browser WASM (Web Assembly) targets
     * Check out the WASM build of this application [here](https://jumpinjackie.github.io/avalonia-mdi-skeleton/master/index.html)
        * Requires a browser that supports [Web Assembly](https://caniuse.com/wasm)
- * Strong usage of MVVM (via `CommunityToolkit.Mvvm`) and data-binding patterns
+ * Strong usage of [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (via `CommunityToolkit.Mvvm`) and data-binding patterns
     * Usage of [IMessenger](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/messenger) and `IRecipient<T>` for inter-ViewModel communication
  * Dependency Injection via [StrongInject](https://github.com/YairHalberstadt/stronginject) (chosen for its source-generator and compile-time nature, which should make it more friendly for app trimming scenarios should we ever want to make a trimmed single-file published build)
  * Dynamically constructed and bound app menu (see `MenuBuilder` class) to facilitate potential future augementation of the final app menu via plugins.
