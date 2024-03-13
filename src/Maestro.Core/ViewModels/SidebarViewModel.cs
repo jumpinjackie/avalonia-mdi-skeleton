@@ -18,6 +18,7 @@ public partial class SidebarViewModel : RecipientViewModelBase, IRecipient<Conne
     // Designer-only ctor
     public SidebarViewModel()
     {
+        this.ThrowIfNotDesignMode();
         _vmFactory = new StubViewModelFactory();
         _connect = _vmFactory.Connect();
         this.IsActive = true;

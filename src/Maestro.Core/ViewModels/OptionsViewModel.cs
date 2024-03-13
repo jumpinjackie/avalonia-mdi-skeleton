@@ -11,6 +11,7 @@ public class OptionsViewModel : TabDocumentViewModel
     public OptionsViewModel()
         : base(new StubOpenDocumentManager(WeakReferenceMessenger.Default))
     {
+        this.ThrowIfNotDesignMode();
         this.Title = Resources.Common_Options;
     }
 

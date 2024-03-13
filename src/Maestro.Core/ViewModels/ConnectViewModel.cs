@@ -15,6 +15,7 @@ public partial class ConnectViewModel : ViewModelBase
     // Designer-only ctor
     public ConnectViewModel()
     {
+        base.ThrowIfNotDesignMode();
         _site = "http://localhost:8008/mapguide/mapagent/mapagent.fcgi";
         _username = "Administrator";
         _password = "admin";

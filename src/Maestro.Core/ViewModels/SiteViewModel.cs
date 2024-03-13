@@ -18,6 +18,7 @@ public partial class SiteViewModel : RecipientViewModelBase, IRecipient<FolderLi
     // Designer-only ctor
     public SiteViewModel()
     {
+        this.ThrowIfNotDesignMode();
         _vmFactory = new StubViewModelFactory();
         this.SiteName = "Test Site";
         this.Children.AddRange([

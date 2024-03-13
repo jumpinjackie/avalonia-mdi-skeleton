@@ -21,6 +21,7 @@ public partial class MainViewModel : RecipientViewModelBase, IRecipient<OpenDocu
     // Designer-only ctor
     public MainViewModel() 
     {
+        base.ThrowIfNotDesignMode();
         _connManager = new StubConnectionManager(WeakReferenceMessenger.Default);
         _vmFactory = new StubViewModelFactory();
         _sidebar = new SidebarViewModel(_vmFactory);
