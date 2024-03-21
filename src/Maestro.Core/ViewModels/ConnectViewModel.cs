@@ -42,17 +42,26 @@ public partial class ConnectViewModel : ViewModelBase
     [ObservableProperty]
     private string? _connectError;
 
+    [ObservableProperty]
+    private bool _isConnecting;
+
     [RelayCommand]
     private async Task Connect()
     {
         this.ConnectError = null;
+        this.IsConnecting = true;
         try
         {
+            await Task.Delay(3000); // Simulate some delay
             await _connManager.ConnectAsync(this.Site, this.Username, this.Password);
         }
         catch (Exception ex)
         {
             this.ConnectError = ex.Message;
+        }
+        finally
+        {
+            this.IsConnecting = false;
         }
     }
 

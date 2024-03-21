@@ -17,14 +17,14 @@
 		<TextBlock FontSize="24" Text="{x:Static assets:Resources.SiteExplorer_Connect}" />
 		<Separator />
 		<TextBlock Text="{x:Static assets:Resources.Connect_Site}" />
-		<TextBox Text="{Binding Site}" />
+		<TextBox IsEnabled="{Binding !IsConnecting}" Text="{Binding Site}" />
 		<TextBlock Text="{x:Static assets:Resources.Connect_Username}" />
-		<TextBox Text="{Binding Username}" />
+		<TextBox IsEnabled="{Binding !IsConnecting}" Text="{Binding Username}" />
 		<TextBlock Text="{x:Static assets:Resources.Connect_Password}" />
-		<TextBox Text="{Binding Password}" PasswordChar="*" />
+		<TextBox IsEnabled="{Binding !IsConnecting}" Text="{Binding Password}" PasswordChar="*" />
 		<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*, *">
-			<Button Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Connect_Connect}" Command="{Binding ConnectCommand}" />
-			<Button Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Common_Cancel}" Command="{Binding CancelConnectCommand}" />
+			<Button IsEnabled="{Binding !IsConnecting}" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Connect_Connect}" Command="{Binding ConnectCommand}" />
+			<Button IsEnabled="{Binding !IsConnecting}" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="{x:Static assets:Resources.Common_Cancel}" Command="{Binding CancelConnectCommand}" />
 		</Grid>
 		<TextBlock Foreground="Red" Text="{Binding ConnectError}" />
 	</StackPanel>
